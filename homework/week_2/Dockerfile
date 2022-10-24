@@ -6,6 +6,8 @@ WORKDIR /app
 RUN pip install --upgrade pip \
     &&  pip install --requirement requirements.txt
 
+COPY data/ ./data/
+
 COPY plot.py .
 
 CMD ["python", "plot.py"]

@@ -11,4 +11,5 @@ df["Original"] = df["Original"].astype(float)
 colors = sns.color_palette('pastel')[0:len(df.index.tolist())]
 plt.pie(df["Original"].tolist(), labels = df.index.tolist(), colors = colors, autopct='%1.1f%%')
 plt.title("Pringles Original Nutrition Percentage Pie Chart")
+plt.savefig("./plot-pringles.csv", format="png")
 plt.show()
