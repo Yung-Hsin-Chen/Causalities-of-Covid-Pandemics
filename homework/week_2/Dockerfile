@@ -1,13 +1,11 @@
 FROM python:3.9-slim
 
-COPY requirements.txt /app/
 WORKDIR /app
 
-RUN pip install --upgrade pip \
-    &&  pip install --requirement requirements.txt
+COPY requirements.txt requirements.txt
 
-COPY data/ ./data/
+RUN pip3 install -r requirements.txt
 
-COPY plot.py .
+COPY . .
 
-CMD ["python", "plot.py"]
+CMD [ "python", "plot.py" ]
