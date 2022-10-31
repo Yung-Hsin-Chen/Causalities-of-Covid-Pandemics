@@ -1,0 +1,17 @@
+# This document describing the steps necessary for a user without superuser 
+# privileges to create a cron job on a Linux server that runs every second 
+# day at 17:00 executing script "runner.sh 'hello'" 
+
+1. go to shell
+
+2. open a crontab file and select the nano editor (easier): 
+   crontab -e
+
+3. In side the crontab:
+   MAILTO="youremail@uzh.ch"
+   0 17 */2 * * ./runner.sh >/dev/null 2>&1
+
+   The first line send the result to the email
+   The second line execute runner.sh every second day at 17:00
+
+4. save the file, and it should execute runner.sh every second day at 17:00.
