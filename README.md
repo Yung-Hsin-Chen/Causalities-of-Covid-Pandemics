@@ -26,6 +26,8 @@ Follow [this](https://github.com/ipozdeev/it-skills-for-research/blob/master/com
 
 ### Week 2
 
+A folder created by cookiecutter Data Science structure is named as final_project in this repo.
+
 The file, plot.py, creates a pie chart of Pringles Original Chips nutritions from the data in ./data/coding-environment-exercise.csv. A docker file is provided so that no additional dependencies are needed to install. Please follow the steps below to plot the figure yourself (assuming dockers are installed).
 
 1. Navigate to week_2 folder.
