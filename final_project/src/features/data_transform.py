@@ -4,6 +4,8 @@ class CleanData:
 
     def __init__(self, df_lst, boundary=300):
         self._df_lst = df_lst
+        self._age_df = df_lst[0]
+        self._manu_df = df_lst[1]
         self._covid_df = df_lst[2]
         self._boundary = boundary
         self._select_col = []
@@ -57,21 +59,47 @@ class CleanData:
 
     def select_column_for_vaccine(self):
 
-        keep_col = [["location", "age_group", "people_fully_vaccinated_per_hundred"],
-                    ["location", "vaccine", "total_vaccinations"], 
-                    ["location", "total_deaths_per_million"]+self._select_col]
+        self._covid_df = self._covid_df[np.intersect1d(self._covid_df.columns, 
+                         ["location", "total_deaths_per_million"]+self._select_col)]
 
-        for i, df in enumerate(self._df_lst):
-            df = df[np.intersect1d(df.columns, keep_col[i])]
-            self._df_lst[i] = df
+        self._df_lst[2] = self._covid_df
 
         return
+
+    def apply_select_latest_date(self):
+
+        self._manu_df = self.select_latest_date(self._manu_df, "vaccine", "total_vaccinations")
+        self._age_df = self.select_latest_date(self._age_df, "age_group", "people_fully_vaccinated_per_hundred")
+
+        self._df_lst[0] = self._manu_df
+        self._df_lst[1] = self._age_df
+
+        return
+
+    def select_latest_date(self, df, category, numeric):
+
+        df = df.sort_values(by=["location", "date"])
+        df = df.groupby(["location", category]).agg("last").reset_index()
+        df = df.drop("date", axis=1)
+        if category == "age_group":
+            keep_col = ["location", "age_group", "people_fully_vaccinated_per_hundred"]
+            df = df[np.intersect1d(df.columns, keep_col)]
+        df = df.set_index(["location", category])
+        if category == "vaccine":
+            df = df[numeric] / df.groupby("location")[numeric].transform("sum")
+        df = df.unstack(level=-1).reset_index()
+        df = df.fillna(0)
+        if category == "age_group":
+            df.columns = df.columns.get_level_values(1)
+            df = df.rename(columns={"":"location"})
+
+        return df
     
     def clean_data(self):
 
         self.remove_less_entry_countries()
         self.get_location_without_null()
+        self.apply_select_latest_date()
         self.select_column_for_vaccine()
 
         return self._df_lst
-        
