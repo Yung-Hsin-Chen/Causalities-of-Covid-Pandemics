@@ -12,8 +12,7 @@ def put_covid_data():
         os.mkdir(DATAPATH+"/external")
         os.mkdir(DATAPATH+"/processed")
 
-    url_lst = ["https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/vaccinations/vaccinations-by-age-group.csv",
-                "https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/vaccinations/vaccinations-by-manufacturer.csv",
+    url_lst = ["https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/vaccinations/vaccinations-by-manufacturer.csv",
                 "https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv"]
 
     for url in url_lst:
@@ -28,7 +27,7 @@ def put_covid_data():
         if df_name == "owid-covid-data":
             col_lst = ['iso_code', 'continent', 'location', 'date', 'tests_units']
             df.loc[:,col_lst] = df[col_lst].applymap(str)
-            
+
         df.to_hdf("./data/external/"+df_name+".h5", key='df', mode='w') 
     
     return
