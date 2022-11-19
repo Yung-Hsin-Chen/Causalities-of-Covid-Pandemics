@@ -11,11 +11,9 @@ from sklearn.tree import DecisionTreeRegressor
 
 class ModelTraining:
 
-    def __init__(self, X_train, X_test, y_train, y_test):
+    def __init__(self, X_train, y_train):
         self._X_train = X_train
-        self._X_test = X_test
         self._y_train = y_train
-        self._y_test = y_test
 
     def train_model_lr(self):
         model = LogisticRegression(penalty="l2", solver="newton-cg")
