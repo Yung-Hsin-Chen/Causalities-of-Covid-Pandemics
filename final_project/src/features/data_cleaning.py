@@ -7,7 +7,7 @@ class CleanData:
         self._boundary = boundary
         self._keep_col = ["location", "date", "aged_65_older", "aged_70_older", "cardiovasc_death_rate",
                           "diabetes_prevalence", "gdp_per_capita", "hospital_beds_per_thousand", "people_fully_vaccinated_per_hundred",\
-                          "human_development_index", "life_expectancy", "median_age", "population_density", \
+                          "human_development_index", "life_expectancy", "median_age", "population_density", "population",\
                           "total_deaths_per_million"]
 
     def get_count(self, df:pd.core.frame.DataFrame) -> pd.core.frame.DataFrame:
@@ -41,7 +41,20 @@ class CleanData:
 
         return
 
+    def age_percentage(self):
+        self._df["aged_65_older_percentage"] = self._df["aged_65_older"] / self._df["population"]
+        self._df["aged_70_older_percentage"] = self._df["aged_70_older"] / self._df["population"]
+        del self._df["aged_65_older"]
+        del self._df["aged_70_older"]
+        del self._df["population"]
+        return
+
+    def apply_age_percentage(self):
+        self.age_percentage()
+        return
+
     def apply_clean_data(self) ->  pd.core.frame.DataFrame:
         self.apply_remove_less_entry_countries()
         self.apply_get_location_wo_null()
+        self.apply_age_percentage()
         return self._df

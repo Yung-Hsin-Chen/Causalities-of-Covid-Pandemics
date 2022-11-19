@@ -20,7 +20,7 @@ def build_feature(clean_data:CleanData):
     df_output = prepare_label.apply_prepare_label()
     del df_output["location"]
     df_output = df_output.fillna(0)
-    df_output.to_hdf("data/processed/covid_data_test.h5", key="df", mode="w", format="t")
+    df_output.to_hdf("data/processed/covid_data.h5", key="df", mode="w", format="t")
 
     return
 
