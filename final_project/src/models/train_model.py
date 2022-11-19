@@ -21,7 +21,7 @@ class ModelTraining:
         pickle.dump(model, open(os.path.join(os.path.abspath(""), "models", "model_lr.sav"), "wb"))
         return
 
-    def train_model_mlp(self):
+    def train_model_perc(self):
         model = Perceptron(tol=1e-3, random_state=0)
         model.fit(X_train, y_train)
         pickle.dump(model, open(os.path.join(os.path.abspath(""), "models", "model_perc.sav"), "wb"))
@@ -38,7 +38,8 @@ class ModelTraining:
 if __name__ == "__main__":
     df = pd.read_hdf(os.path.join(os.path.abspath(""), "data", "processed", "covid_data.h5"))
     X_train, X_test, y_train, y_test = data_splitting(df)
-    model_training = ModelTraining(X_train, X_test, y_train, y_test)
+    model_training = ModelTraining(X_train, y_train)
     model_training.train_model_lr()
-    model_training.train_model_mlp()
+    model_training.train_model_perc()
+    model_training.train_model_tree()
     

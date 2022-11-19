@@ -3,8 +3,6 @@ import sys
 parentdir = os.path.dirname("final_project")
 sys.path.insert(0, parentdir)
 import matplotlib.pyplot as plt
-from mpl_toolkits.axes_grid1 import make_axes_locatable
-from sklearn.metrics import confusion_matrix
 from src.models.data_splitting import data_splitting
 import pickle
 import pandas as pd
@@ -53,7 +51,14 @@ class Prediction:
         self.predict_model_lr()
         self.predict_model_perc()
         self.predict_model_tree()
-        model_acc = pd.DataFrame.from_dict({"logistic regression":self._model_lr_acc,
-                                            "perceptron":self._model_perc_acc,
-                                            "decision tree":self._model_tree_acc})
+        model_acc = pd.DataFrame.from_dict({"logistic regression":[self._model_lr_acc],
+                                            "perceptron":[self._model_perc_acc],
+                                            "decision tree":[self._model_tree_acc]})
+        model_acc.to_hdf(os.path.join(os.path.abspath(""), "models", "model_acc_summary.h5"), key="df", mode="w", format="t")
         return model_acc
+
+if __name__ == "__main__":
+    df = pd.read_hdf(os.path.join(os.path.abspath(""), "data", "processed", "covid_data.h5"))
+    X_train, X_test, y_train, y_test = data_splitting(df)
+    prediction = Prediction(X_test, y_test)
+    prediction.get_model_accuracy()
