@@ -40,7 +40,7 @@ class Prediction:
         return
 
     def predict_model_tree(self):
-        model = pickle.load(open(os.path.join(os.path.abspath(""), "models", "model_tree.sav"), "rb"))
+        model = pickle.load(open(os.path.join(os.path.abspath(""), "models", "model_deci.sav"), "rb"))
         y_test_pred = model.predict(self._X_test)
         self._model_tree_acc = self.get_accuracy(y_test_pred)
         np.save(os.path.join(os.path.abspath(""), "models", "tree_y_test_pred.npy"), y_test_pred)

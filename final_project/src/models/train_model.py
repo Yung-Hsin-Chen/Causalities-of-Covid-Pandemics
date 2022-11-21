@@ -30,7 +30,7 @@ class ModelTraining:
     def train_model_tree(self):
         model = DecisionTreeRegressor()
         model.fit(X_train, y_train)
-        pickle.dump(model, open(os.path.join(os.path.abspath(""), "models", "model_tree.sav"), "wb"))
+        pickle.dump(model, open(os.path.join(os.path.abspath(""), "models", "model_deci.sav"), "wb"))
         return
 
 
