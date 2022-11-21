@@ -18,7 +18,7 @@ class ModelTraining:
     def train_model_lr(self):
         model = LogisticRegression(penalty="l2", solver="newton-cg")
         model.fit(self._X_train, self._y_train)
-        pickle.dump(model, open(os.path.join(os.path.abspath(""), "models", "model_lr.sav"), "wb"))
+        pickle.dump(model, open(os.path.join(os.path.abspath(""), "models", "model_logi.sav"), "wb"))
         return
 
     def train_model_perc(self):
@@ -37,6 +37,7 @@ class ModelTraining:
 
 if __name__ == "__main__":
     df = pd.read_hdf(os.path.join(os.path.abspath(""), "data", "processed", "covid_data.h5"))
+    pickle.dump(df.columns[:-1], open(os.path.join(os.path.abspath(""), "models", "feature_list.pkl"), "wb"))
     X_train, X_test, y_train, y_test = data_splitting(df)
     model_training = ModelTraining(X_train, y_train)
     model_training.train_model_lr()
