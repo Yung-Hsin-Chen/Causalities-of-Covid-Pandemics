@@ -7,7 +7,7 @@
 ## Run Files
 1. Build a docker image.
     ```
-    docker build -t dtff_final/src:v.1.0 .
+    docker build -t dtff_final/src:v.1.0 . -f Dockerfile
     ```
 2. Run the container in an interactive mode.
 
@@ -27,7 +27,7 @@
     ```
     docker run -it -v $PWD/models:/app/models dtff_final/src:v.1.0 python src/models/predict_model.py
     ```
-    e. Get feature importance table with ```src/feature_importance/get_geature_importance.py``` ans save the feature importance table in ```models```.
+    e. Get feature importance table with ```src/feature_importance/get_geature_importance.py``` and save the feature importance table in ```models```.
     ```
     docker run -it -v $PWD/models:/app/models dtff_final/src:v.1.0 python src/feature_importance/get_feature_importance.py
     ```
