@@ -27,7 +27,8 @@ class FeatureImportance:
             "Importance": model.coef_[0]
         })
         importances = importances.sort_values(by="Importance", ascending=False)
-        importances .index = np.arange(1, len(importances ) + 1)
+        importances.index = np.arange(1, len(importances ) + 1)
+        importances.to_hdf(os.path.join(os.path.abspath(""), "models", "feature_importance.h5"), key="df", mode="w", format="t")
         return importances
 
 if __name__ == "__main__":
