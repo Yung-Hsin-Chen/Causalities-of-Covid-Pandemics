@@ -8,7 +8,7 @@ class CleanData:
         self._keep_col = ["location", "date", "aged_65_older", "aged_70_older", "cardiovasc_death_rate",
                           "diabetes_prevalence", "gdp_per_capita", "hospital_beds_per_thousand", "people_fully_vaccinated_per_hundred",\
                           "human_development_index", "life_expectancy", "median_age", "population_density", "population",\
-                          "total_deaths_per_million"]
+                          "total_cases_per_million"]
 
     def get_count(self, df:pd.core.frame.DataFrame) -> pd.core.frame.DataFrame:
 
