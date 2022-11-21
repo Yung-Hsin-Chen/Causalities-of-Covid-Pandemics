@@ -5,11 +5,12 @@
 * [Run Files](#run-files)
 
 ## Run Files
-1. Build a docker image.
+1. Navigate to ```final_project/```.
+2. Build a docker image.
     ```
     docker build -t dtff_final/src:v.1.0 . -f Dockerfile
     ```
-2. Run the container in an interactive mode.
+3. Run the container in an interactive mode.
 
     a. Run ```upstream.py``` to load the data from external repository to local database ```data/external```.
     ```
