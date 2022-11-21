@@ -9,4 +9,4 @@ RUN pip3 install --upgrade pip \
 
 COPY . .
 
-CMD [ "python", "plot.py" ]
+CMD [ "python"]
