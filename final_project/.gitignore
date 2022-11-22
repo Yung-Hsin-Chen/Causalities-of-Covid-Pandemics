@@ -93,4 +93,4 @@ target/
 
 /reports/report.run.xml
 *.xml
-/reports/report-blx.bib
+/reports/report/report-blx.bib
