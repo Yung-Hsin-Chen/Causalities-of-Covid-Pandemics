@@ -90,3 +90,7 @@ target/
 
 /test.py
 /test.ipynb
+
+/reports/report.run.xml
+*.xml
+/reports/report-blx.bib
