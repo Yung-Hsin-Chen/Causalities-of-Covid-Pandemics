@@ -32,3 +32,18 @@
     ```
     docker run -it -v $PWD/models:/app/models dtff_final/src:v.1.0 python src/feature_importance/get_feature_importance.py
     ```
+
+## Run Jupyter Notebook for Visualisation
+1. Navigate to ```final_project/```.
+2. Run the following command in a terminal. This will save the notebooks locally and show the existing notebook in the docker container.
+    ```
+    docker run -p 8888:8888 --name notebook -v src/visualization:/home/dtff/covid -e JUPYTER_ENABLE_LAB=yes --env-file .env -it jupyter/datascience-notebook
+    ```
+3. After finished using the jupyter notebook, the container can be removed by the following command.
+    ```
+    docker rm <container-id>
+    ```
+    The ```<container-id>```can be checked with 
+    ```
+    docker ps -a
+    ```
