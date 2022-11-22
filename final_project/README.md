@@ -1,57 +1,91 @@
-dtff_final_project
-==============================
+# Causalities of Covid Pandemics
+## Digital Tools for Finance Final Project
 
-This is the final project for Digital Tools for Finance
+## Table of contents
+* [Run Files](#run-files)
+* [Run Jupyter Notebook for Visualisation](#run-jupyter-notebook-for-visualisation)
+* [Compile the Report](#compile-the-report)
+* [Compile the Presentation](#compile-the-presentation)
 
-Project Organization
-------------
+## Run Files
+1. Navigate to ```final_project/```.
+2. Build a docker image.
+    ```
+    docker build -t dtff_project/covid:v.1.0 . -f Dockerfile
+    ```
+3. Run the container in an interactive mode.
 
-    ├── LICENSE
-    ├── Makefile           <- Makefile with commands like `make data` or `make train`
-    ├── README.md          <- The top-level README for developers using this project.
-    ├── data
-    │   ├── external       <- Data from third party sources.
-    │   ├── interim        <- Intermediate data that has been transformed.
-    │   ├── processed      <- The final, canonical data sets for modeling.
-    │   └── raw            <- The original, immutable data dump.
-    │
-    ├── docs               <- A default Sphinx project; see sphinx-doc.org for details
-    │
-    ├── models             <- Trained and serialized models, model predictions, or model summaries
-    │
-    ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-    │                         the creator's initials, and a short `-` delimited description, e.g.
-    │                         `1.0-jqp-initial-data-exploration`.
-    │
-    ├── references         <- Data dictionaries, manuals, and all other explanatory materials.
-    │
-    ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-    │   └── figures        <- Generated graphics and figures to be used in reporting
-    │
-    ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-    │                         generated with `pip freeze > requirements.txt`
-    │
-    ├── setup.py           <- makes project pip installable (pip install -e .) so src can be imported
-    ├── src                <- Source code for use in this project.
-    │   ├── __init__.py    <- Makes src a Python module
-    │   │
-    │   ├── data           <- Scripts to download or generate data
-    │   │   └── make_dataset.py
-    │   │
-    │   ├── features       <- Scripts to turn raw data into features for modeling
-    │   │   └── build_features.py
-    │   │
-    │   ├── models         <- Scripts to train models and then use trained models to make
-    │   │   │                 predictions
-    │   │   ├── predict_model.py
-    │   │   └── train_model.py
-    │   │
-    │   └── visualization  <- Scripts to create exploratory and results oriented visualizations
-    │       └── visualize.py
-    │
-    └── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
+    1. Run ```upstream.py``` to load the data from external repository to local database ```data/external```.
+        ```
+        docker run -it -v $PWD/data/external:/app/data/external dtff_project/covid:v.1.0 python datafeed/upstream.py
+        ```
+    2. Run ```src/build_features.py``` to build features for the models and save it in local database ```data/processed```.
+        ```
+        docker run -it -v $PWD/data/processed:/app/data/processed dtff_project/covid:v.1.0 python src/features/build_features.py
+        ```
+    3. Train the models with ```src/models/train_model.py```
+        ```
+        docker run -it -v $PWD/models:/app/models dtff_project/covid:v.1.0 python src/models/train_model.py
+        ```
+    4. Predict with the models with ```src/models/predict_model.py``` and save the predicted label and model accuracy summary table in ```models```.
+        ```
+        docker run -it -v $PWD/models:/app/models dtff_project/covid:v.1.0 python src/models/predict_model.py
+        ```
+    5. Get feature importance table with ```src/feature_importance/get_geature_importance.py``` and save the feature importance table in ```models```.
+        ```
+        docker run -it -v $PWD/models:/app/models dtff_project/covid:v.1.0 python src/feature_importance/get_feature_importance.py
+        ```
 
+## Run Jupyter Notebook for Visualisation
+1. Navigate to ```final_project/```.
+2. Run the following command in a terminal. This will save the notebooks locally and show the existing notebook in the docker container.
+    ```
+    docker run -p 8888:8888 --name notebook -v src/visualization:/home/dtff/covid -e JUPYTER_ENABLE_LAB=yes --env-file .env -it jupyter/datascience-notebook
+    ```
+3. After finished using the jupyter notebook, the container can be removed by the following command.
+    ```
+    docker rm <container-id>
+    ```
+    The ```<container-id>```can be checked with 
+    ```
+    docker ps -a
+    ```
 
---------
+## Compile the Report
 
-<p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
+1. Navigate to ```final_project/```.
+2. Build the docker container.
+    ```
+    docker build -t dtff_project/covid_report:v.1.0 . -f reports/Dockerfile
+    ```
+3. Run the docker container.
+    ```
+    docker run -it -v $PWD/reports/report:/work/reports/report dtff_project/covid_report:v.1.1
+    ```
+4. After getting inside the docker container, navigate to ```reports/report```.
+    ```
+    cd reports/report
+    ```
+5. Compile the ```report.tex```.
+    ```
+    pdflatex report.tex
+    ```
+
+## Compile the Presentation
+
+1. Navigate to ```final_project/```.
+2. Build the docker container.
+    ```
+    docker build -t dtff_project/covid_report:v.1.0 . -f reports/Dockerfile
+    ```
+3. Run the docker container.
+    ```
+    docker run -it -v $PWD/reports/report:/work/reports/report dtff_project/covid_report:v.1.1
+    ```
+4. After getting inside the docker container, navigate to ```reports/report```.
+    ```
+    cd reports/report
+    ```
+5. Compile the ```report.tex```.
+    ```
+    pdflatex report.tex
