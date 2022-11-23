@@ -30,17 +30,15 @@
 \title{Effective Methods for Capturing Cattle Rustlers} % The article title
 
 \author{
-	\authorstyle{John Marston\textsuperscript{1,2,3} and Bonnie MacFarlane\textsuperscript{2,3}} % Authors
+	\authorstyle{Yung-Hsin Chen\textsuperscript{1} and Haoxin Cai\textsuperscript{1}} % Authors
 	\newline\newline % Space before institutions
-	\textsuperscript{1}\institution{Universidad Nacional Autónoma de México, Mexico City, Mexico}\\ % Institution 1
-	\textsuperscript{2}\institution{University of Texas at Austin, Texas, United States of America}\\ % Institution 2
-	\textsuperscript{3}\institution{\texttt{LaTeXTemplates.com}} % Institution 3
+	\textsuperscript{1}\institution{Universit{\"a}t Z{\"u}rich, Z{\"u}rich, Switzerland} % Institution 1
 }
 
 % Example of a one line author/institution relationship
 %\author{\newauthor{John Marston} \newinstitution{Universidad Nacional Autónoma de México, Mexico City, Mexico}}
 
-\date{\today} % Add a date here if you would like one to appear underneath the title block, use \today for the current date, leave empty for no date
+\date{19 December 2022} % Add a date here if you would like one to appear underneath the title block, use \today for the current date, leave empty for no date
 
 %----------------------------------------------------------------------------------------
 
@@ -54,112 +52,149 @@
 %	ABSTRACT
 %----------------------------------------------------------------------------------------
 
-\lettrineabstract{Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce maximus nisi ligula. Morbi laoreet ex ligula, vitae lobortis purus mattis vel. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec ac metus ut turpis mollis placerat et nec enim. Duis tristique nibh maximus faucibus facilisis. Praesent in consequat leo. Maecenas condimentum ex rhoncus, elementum diam vel, malesuada ante.}
+\lettrineabstract{The COVID-19 pandemic has severe impacts on almost every aspect around the world. 
+It causes not only social and economic disruption, but also drastic death rates. Inevitably, people 
+are curious about the causalities of COVID-19 and how to prevent the pandemic from getting worse. In 
+this report, data are collected from 192 countries, and classification models are applied in order to get 
+a list of feature importance. It is believed that the more-important-features play more crucial role
+in the severity of the pandemic of a certain country.}
 
 %----------------------------------------------------------------------------------------
 %	ARTICLE CONTENTS
 %----------------------------------------------------------------------------------------
 
-\section{Section}
+%----------------------------------------------------------------------------------------
+%	INTRODUCTION
+%----------------------------------------------------------------------------------------
+\section{Introduction}The goal of the report is to get the most related factors of COVID-19 
+pandemic cases in countries. The time parameters are taken out of consideration for simplicity. 
+(write more...)
 
-This sentence requires citation \citep{Reference1}. This sentence requires multiple citations to imply that it is better supported \citep{Reference2,Reference3}. Finally, when conducting an appeal to authority, it can be useful to cite a reference in-text, much like \cite{Reference1} do quite a bit. Oh, and make sure to check out the bear in Figure \ref{bear}.
+%----------------------------------------------------------------------------------------
+%	DOMAIN KNOWLEDGE
+%----------------------------------------------------------------------------------------
+\section{Domain Knowledge}\label{sec:domain_knowledge}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce maximus nisi ligula. Morbi laoreet ex ligula, vitae lobortis purus mattis vel. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec ac metus ut turpis mollis placerat et nec enim. Duis tristique nibh maximus faucibus facilisis. Praesent in consequat leo. Maecenas condimentum ex rhoncus, elementum diam vel, malesuada ante. Fusce pulvinar, mauris pretium placerat venenatis, lectus ex tempus lacus, id suscipit libero lorem eu augue. Interdum et malesuada fames ac ante ipsum primis in faucibus.
-
-Aliquam elementum nulla at arcu finibus aliquet. Praesent congue ultrices nisl pretium posuere. Nunc vel nulla hendrerit, ultrices justo ut, ultrices sapien. Duis ut arcu at nunc pellentesque consectetur. Vestibulum eget nisl porta, ultricies orci eget, efficitur tellus. Maecenas rhoncus purus vel mauris tincidunt, et euismod nibh viverra. Mauris ultrices tellus quis ante lobortis gravida. Duis vulputate viverra erat, eu sollicitudin dui. Proin a iaculis massa. Nam at turpis in sem malesuada rhoncus. Aenean tempor risus dui, et ultrices nulla rutrum ut. Nam commodo fermentum purus, eget mattis odio fringilla at. Etiam congue et ipsum sed feugiat. Morbi euismod ut purus et tempus. Etiam est ligula, aliquam eget porttitor ut, auctor in risus. Curabitur at urna id dui lobortis pellentesque.
-
-\begin{align}
-	A = 
-	\begin{bmatrix}
-		A_{11} & A_{21} \\
-		A_{21} & A_{22}
-	\end{bmatrix}
-\end{align}
-
-Donec nec nibh sagittis, finibus mauris quis, laoreet augue. Maecenas aliquam sem nunc, vel semper urna hendrerit nec. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Maecenas pellentesque dolor lacus, sit amet pretium felis vestibulum finibus. Duis tincidunt sapien faucibus nisi vehicula tincidunt. Donec euismod suscipit ligula a tempor. Aenean a nulla sit amet magna ullamcorper condimentum. Fusce eu velit vitae libero varius condimentum at sed dui.
-
-In non leo tincidunt, tristique orci eu, suscipit ex. Fusce non lectus ut dolor tincidunt fermentum. Donec dictum mauris magna, ut dictum nisl finibus quis. Nulla elementum ipsum ut lectus sodales finibus. Nulla ac malesuada magna. Etiam arcu dolor, luctus eget elit a, volutpat vulputate mi. Donec elementum tellus libero, ut ornare orci dignissim lacinia. Nullam iaculis vehicula sem, at tempor tellus. Praesent eu nisi a elit viverra lobortis. Nullam eu metus et justo molestie posuere vitae imperdiet erat. Praesent at gravida dui. Vivamus mauris odio, efficitur eget lacus quis, mattis tristique risus. Mauris quis metus sed risus lobortis sollicitudin vitae vitae quam. Morbi leo turpis, aliquam at nunc sit amet, ultricies dictum lorem. Nam et fringilla elit. Vestibulum auctor, turpis ut facilisis tempor, arcu nibh tincidunt libero, quis blandit leo turpis a urna.
-
-%------------------------------------------------
-
-\subsection{Subsection}
-
-Nam ante risus, tempor nec lacus ac, congue pretium dui. Donec a nisl est. Integer accumsan mauris eu ex venenatis mollis. Aliquam sit amet ipsum laoreet, mollis sem sit amet, pellentesque quam. Aenean auctor diam eget erat venenatis laoreet. In ipsum felis, tristique eu efficitur at, maximus ac urna. Aenean pulvinar eu lorem eget suscipit. Aliquam et lorem erat. Nam fringilla ante risus, eget convallis nunc pellentesque non. Donec ipsum nisl, consectetur in magna eu, hendrerit pulvinar orci. Mauris porta convallis neque, non viverra urna pulvinar ac. Cras non condimentum lectus. Aliquam odio leo, aliquet vitae tellus nec, imperdiet lacinia turpis. Nam ac lectus imperdiet, luctus nibh a, feugiat urna.
-
-\begin{itemize}
-	\item First item in a list 
-	\item Second item in a list 
-	\item Third item in a list
-\end{itemize}
-
-Nunc egestas quis leo sed efficitur. Donec placerat, dui vel bibendum bibendum, tortor ligula auctor elit, aliquet pulvinar leo ante nec tellus. Praesent at vulputate libero, sit amet elementum magna. Pellentesque sodales odio eu ex interdum molestie. Suspendisse lacinia, augue quis interdum posuere, dolor ipsum euismod turpis, sed viverra nibh velit eget dolor. Curabitur consectetur tempus lacus, sit amet luctus mauris interdum vel. Curabitur vehicula convallis felis, eget mattis justo rhoncus eget. Pellentesque et semper lectus.
-
-\begin{description}
-	\item[First] This is the first item
-	\item[Last] This is the last item
-\end{description}
-
-Donec nec nibh sagittis, finibus mauris quis, laoreet augue. Maecenas aliquam sem nunc, vel semper urna hendrerit nec. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Maecenas pellentesque dolor lacus, sit amet pretium felis vestibulum finibus. Duis tincidunt sapien faucibus nisi vehicula tincidunt. Donec euismod suscipit ligula a tempor. Aenean a nulla sit amet magna ullamcorper condimentum. Fusce eu velit vitae libero varius condimentum at sed dui.
-
-%------------------------------------------------
-
-\subsection{Subsection}
-
-In hac habitasse platea dictumst. Etiam ac tortor fermentum, ultrices libero gravida, blandit metus. Vivamus sed convallis felis. Cras vel tortor sollicitudin, vestibulum nisi at, pretium justo. Curabitur placerat elit nunc, sed luctus ipsum auctor a. Nulla feugiat quam venenatis nulla imperdiet vulputate non faucibus lorem. Curabitur mollis diam non leo ullamcorper lacinia.
-
-Morbi iaculis posuere arcu, ut scelerisque sem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris placerat urna id enim aliquet, non consequat leo imperdiet. Phasellus at nibh ut tortor hendrerit accumsan. Phasellus sollicitudin luctus sapien, feugiat facilisis risus consectetur eleifend. In quis luctus turpis. Nulla sed tellus libero. Pellentesque metus tortor, convallis at tellus quis, accumsan faucibus nulla. Fusce auctor eleifend volutpat. Maecenas vel faucibus enim. Donec venenatis congue congue. Integer sit amet quam ac est aliquam aliquet. Ut commodo justo sit amet convallis scelerisque.
-
-\begin{enumerate}
-	\item First numbered item in a list
-	\item Second numbered item in a list
-	\item Third numbered item in a list
-\end{enumerate}
-
-Aliquam elementum nulla at arcu finibus aliquet. Praesent congue ultrices nisl pretium posuere. Nunc vel nulla hendrerit, ultrices justo ut, ultrices sapien. Duis ut arcu at nunc pellentesque consectetur. Vestibulum eget nisl porta, ultricies orci eget, efficitur tellus. Maecenas rhoncus purus vel mauris tincidunt, et euismod nibh viverra. Mauris ultrices tellus quis ante lobortis gravida. Duis vulputate viverra erat, eu sollicitudin dui. Proin a iaculis massa. Nam at turpis in sem malesuada rhoncus. Aenean tempor risus dui, et ultrices nulla rutrum ut. Nam commodo fermentum purus, eget mattis odio fringilla at. Etiam congue et ipsum sed feugiat. Morbi euismod ut purus et tempus. Etiam est ligula, aliquam eget porttitor ut, auctor in risus. Curabitur at urna id dui lobortis pellentesque.
-
+%----------------------------------------------------------------------------------------
+%	METHOD
+%----------------------------------------------------------------------------------------
+\section{Method}
+In this section, the methods of this particular task will be explained, including introduction of data, building 
+features for the models, training and predicting classifiers and generating the feature importance table. 
+Classifiers and other used tools are introduced and explained in \autoref{sec:domain_knowledge}.
+\subsection{Data}
+Data used for this task is from covid-19-data from Our World of Data. It is online in a github repository, making 
+it easy to access. The data is loaded into the local database by the \emph{request} package of Python.\\[10pt]
+The data consists of 67 columns and 248 countries with 236386 rows in total. Attribute \emph{location} and 
+\emph{date} together define each unique row of data. The data is still being updated. 
+A summary table of the data is shown 
+in \autoref{tab:data_summary}.
 \begin{table}
-	\caption{Example table}
+	\caption{Data Summary Table}
 	\centering
-	\begin{tabular}{llr}
+	\begin{tabular}{lr}
 		\toprule
-		\multicolumn{2}{c}{Name} \\
-		\cmidrule(r){1-2}
-		First Name & Last Name & Grade \\
+		\textbf{Information} & \textbf{Description} \\
 		\midrule
-		John & Doe & $7.5$ \\
-		Richard & Miles & $5$ \\
+		number of columns & 67 \\
+		number of rows & 236386 \\
+		number of countries & 248 \\
+		key & \{location:date\}\\
+		starting date & 01.Jan.2020\\
 		\bottomrule
+	\label{tab:data_summary}
 	\end{tabular}
 \end{table}
-
-%------------------------------------------------
-
-\section{Section}
-
-\begin{figure}
-	\includegraphics[width=\linewidth]{fig/bear.jpg} % Figure image
-	\caption{A majestic grizzly bear} % Figure caption
-	\label{bear} % Label for referencing with \ref{bear}
-\end{figure}
-
-In hac habitasse platea dictumst. Vivamus eu finibus leo. Donec malesuada dui non sagittis auctor. Aenean condimentum eros metus. Nunc tempus id velit ut tempus. Quisque fermentum, nisl sit amet consectetur ornare, nunc leo luctus leo, vitae mattis odio augue id libero. Mauris quis lectus at ante scelerisque sollicitudin in eu nisi. Nulla elit lacus, ultricies eu erat congue, venenatis semper turpis. Ut nec venenatis velit. Mauris lacinia diam diam, ac egestas neque sodales sed. Curabitur eu diam nulla. Duis nec turpis finibus, commodo diam sed, bibendum erat. Nunc in velit ullamcorper, posuere libero a, mollis mauris. Nulla vehicula quam id tortor ornare blandit. Aenean maximus tempor orci ultrices placerat. Aenean condimentum magna vulputate erat mattis feugiat.
-
-Quisque lacinia, purus id mattis gravida, sem enim fringilla erat, non dapibus est tellus pellentesque velit. Vivamus pretium sem quis leo placerat, at dignissim ex iaculis. Donec neque tortor, pharetra quis vestibulum id, tempus scelerisque mi. Cras in mattis est. Integer nec lorem rutrum, semper ligula bibendum, iaculis neque. Sed in nunc placerat, viverra dui in, fringilla sem. Sed quis rutrum magna, vitae pellentesque eros.
-
-Praesent maximus mauris vitae nisl pulvinar, at tristique tortor aliquam. Etiam sit amet nunc in nulla vulputate sollicitudin. Aliquam erat volutpat. Praesent pharetra gravida cursus. Quisque vulputate lacus nunc. Integer orci ex, porttitor quis sapien id, eleifend gravida mi. Etiam efficitur justo eget nulla congue mattis. Duis commodo vel arcu a pretium. Aenean eleifend viverra nisl, nec ornare lacus rutrum in.
-
-Vivamus pulvinar ac eros eu pellentesque. Duis nibh felis, sagittis sed lacus at, sagittis mattis nisi. Fusce ante dui, tincidunt in scelerisque ut, sagittis at magna. Fusce tincidunt felis et odio tincidunt imperdiet. Cras ut facilisis nisl. Aliquam vitae consequat metus, eget gravida augue. In imperdiet justo quis nulla venenatis accumsan. Aliquam aliquet consectetur tortor, at sollicitudin sapien porta sed. Donec efficitur mauris id rhoncus volutpat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed bibendum purus dapibus tincidunt euismod. Nullam malesuada ultrices lacus, ut tincidunt dolor. Etiam imperdiet quam eget elit tincidunt scelerisque. Curabitur ut ullamcorper dui. Cras gravida porta leo, ut lobortis nisl venenatis pulvinar. Proin non semper nulla.
-
-Praesent pretium nisl purus, id mollis nibh efficitur sed. Sed sit amet urna leo. Nulla sed imperdiet sem. Donec ut diam tristique, faucibus ligula vel, varius est. In ipsum ligula, elementum vitae velit ac, viverra tincidunt enim. Phasellus gravida diam id nisl interdum maximus. Ut semper, tortor vitae congue pharetra, justo odio commodo urna, vel tempus libero ex et risus. Vivamus commodo felis non venenatis rutrum. Sed pulvinar scelerisque augue in porta. Sed maximus libero nec tellus malesuada elementum. Proin non augue posuere, pellentesque felis viverra, varius urna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dignissim urna eget diam dictum, eget facilisis libero pulvinar.
-
-Aliquam ex tellus, hendrerit sed odio sit amet, facilisis elementum enim. Suspendisse potenti. Integer molestie ac augue sit amet fermentum. Vivamus ultrices ante nulla, vitae venenatis ipsum ullamcorper sed. Phasellus gravida felis sapien, ac porta purus pharetra quis. Sed eget augue tellus. Nam vitae hendrerit arcu, id iaculis ipsum. Pellentesque sed magna tortor.
-
-In ac tempus diam. Sed nec lobortis massa, suscipit accumsan justo. Quisque porttitor, ligula a semper euismod, urna diam dictum sem, sed maximus risus purus sit amet felis. Fusce elementum maximus nisi a mattis. Nulla vitae elit erat. Integer sit amet commodo risus, eget elementum nulla. Donec ultricies erat sit amet sem commodo iaculis. Donec euismod volutpat lacus, ut tempor est lacinia a. Vivamus auctor condimentum tincidunt. Praesent sed finibus urna. Sed pellentesque blandit magna et rhoncus.
-
-Integer vel turpis nec tellus sodales malesuada a vel odio. Fusce et lectus eu nibh rhoncus tempus vel nec elit. Suspendisse commodo orci velit, lacinia dictum odio accumsan et. Vivamus libero dui, elementum vel nibh non, fermentum venenatis risus. Aliquam sed sapien ac orci sodales tempus a eget dui. Morbi non dictum tortor, quis tincidunt nibh. Proin ut tincidunt odio.
-
-Pellentesque ac nisi dolor. Pellentesque maximus est arcu, eu scelerisque est rutrum vitae. Mauris ullamcorper vulputate vehicula. Praesent fermentum leo ac velit accumsan consectetur. Aliquam eleifend ex eros, ut lacinia tellus volutpat non. Pellentesque sit amet cursus diam. Maecenas elementum mattis est, in tincidunt ex pretium ac. Integer ultrices nunc rutrum, pretium sapien vitae, lobortis velit.
-
+\subsection{Building Features}
+The process of building features includes data cleaning and feature selection, and label preparation. Data cleaning 
+and feature selecting is crucial for the accuracy of models. Bad data cleaning can lead to biased results or 
+bad model performances. Relevant attributes will be selected as features to be put into the classifiers, i.e., 
+the models. Finally, since this is a supervised learning task, the label should be prepared for model training.\\[10pt]
+In the data cleaning phase, the goal is to get a table of one row per country, i.e., each row represents the 
+information of a country. The label is defined as the attribute, \emph{total\_cases\_per\_million}. To achieve this, 
+relavent attributes are first selected for model training. For this task, eleven attributes that is speculated to 
+affect the number of COVID cases are selected from the raw data. The selected attributes are listed in 
+\autoref{tab:attributes}. Countries with less than 200 rows of data is then removed. Since each row corresponds 
+to one date, it is not ideal to use the data of a country if less than 200 days of data are recorded. Among the 
+selected attributes, \emph{aged\_65\_older} and \emph{aged\_70\_older} are divided by \emph{population} into 
+\emph{aged\_65\_older\_percentage} and \emph{aged\_70\_older\_percentage} respectively so that the models are 
+trained on the percentage of elder people instead of the total number. Except for the attribute 
+\emph{people\_fully\_vaccinated\_per\_hundred}, all the other attributes have a single value throughout the dates 
+for each country. However, the attribute \emph{people\_fully\_vaccinated\_per\_hundred} and the label attribute 
+\emph{total\_cases\_per\_million} is accumulated day by day. In this case, the data of the latest date is used as 
+the feature value for each country. By doing this, the model will be able to generate the feature importance 
+table according to how all features affect the number of total cases per million in each country. After data 
+cleaning and feature selection, 194 countries/rows and 11 features are left for model training.\\[10pt]
+\begin{table}
+	\caption{Data Summary Table}
+	\centering
+	\begin{tabular}{ll}
+		\toprule
+		\textbf{Selected Attributes} &  \\
+		\midrule
+		aged\_65\_older & cardiovasc\_death\_rate \\
+		aged\_70\_older & diabetes\_prevalence \\
+		gdp\_per\_capita & hospital\_beds\_per\_thousand \\
+		population\_density & human\_development\_index \\
+		life\_expectancy & median\_age \\
+		\multicolumn{2}{l}{people\_fully\_vaccinated\_per\_hundred} \\
+		\bottomrule
+	\label{tab:attributes}
+	\end{tabular}
+\end{table}
+After data cleaning and feature selection, label preparation is performed. The attribute \emph{total\_cases\_per\_million} 
+is categorised into four levels of severity. The interval of the categorisation is shown in \autoref{tab:label_interval}. 
+Apparently, there is no country with over 700'000 cases per million. 
+\begin{table}
+	\caption{Label Interval for Label Preparation}
+	\centering
+	\begin{tabular}{ll}
+		\toprule
+		\textbf{Level} & \textbf{Interval} \\
+		\midrule
+		0 & 0 - 50'000 \\
+		1 & 50'000 - 200'000 \\
+		2 & 200'000 - 400'000 \\
+		3 & 400'000 - 700'000\\
+		\bottomrule
+	\label{tab:label_interval}
+	\end{tabular}
+\end{table}
+[0, 50000, 200000, 400000, 700000]
+\subsection{Classifiers}
+Classifiers are used for classification tasks. Due to the small dimension of the dataset, several changes are made to 
+adapt the data size. The data is not splitted into training, validation and testing datasets, but only training and 
+testing only. In this task, the training-testing split will be 80\% and 20\% respectively. Besides, it is not recommended 
+to use models with too many parameters since it might have to higher chance of overfitting. Thus, simple models are 
+picked out for this task including logistic regression, linear perceptron and decision tree. These models can be easily 
+applied to the dataset with \emph{sklearn} from Python. A summary of models used for the task is shown in 
+\autoref{tab:model_summary}.
+\begin{table}
+	\caption{Model Summary}
+	\centering
+	\begin{tabular}{lr}
+		\toprule
+		\textbf{Model} & \textbf{Details} \\
+		\toprule
+		\textbf{logistic regression} & \\ 
+		penalty & l2 \\
+		solver & newton-cg \\
+		\midrule
+		\textbf{Linear Perceptron} & \\
+		tolerance & 0.001 \\
+		penalty & l2 \\
+		\midrule
+		\textbf{Decision Tree} & \\
+	\bottomrule
+	\label{tab:model_summary}
+	\end{tabular}
+\end{table}
+\subsection{Feature Importance Table}
+The feature importance is generated automatically via the trained model. It shows weight of each feature. The weight can 
+be thought of as how significant each feature effects the classification accuracy. 
+\section{Results}
+\section{Dicussion}
+\section{Conclusion}
 %----------------------------------------------------------------------------------------
 %	BIBLIOGRAPHY
 %----------------------------------------------------------------------------------------
