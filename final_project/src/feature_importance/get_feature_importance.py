@@ -20,14 +20,10 @@ class FeatureImportance:
         return model
 
     def get_importance_table(self):
-        model = self.get_best_model()
-        if self._best_model == "decision tree":
-            importance_score = model.feature_importances_
-        else:
-            importance_score = model.coef_[0]
+        model = self.get_best_model()       
         importances = pd.DataFrame(data={
             "Feature": pickle.load(open(os.path.join(os.path.abspath(""), "models", "feature_list.pkl"), "rb")),
-            "Importance": importance_score
+            "Importance": model.best_estimator_.feature_importances_
         })
         importances = importances.sort_values(by="Importance", ascending=False)
         importances.index = np.arange(1, len(importances ) + 1)

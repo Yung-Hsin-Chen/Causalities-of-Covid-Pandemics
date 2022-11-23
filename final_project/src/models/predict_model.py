@@ -40,10 +40,10 @@ class Prediction:
         return
 
     def predict_model_tree(self):
-        model = pickle.load(open(os.path.join(os.path.abspath(""), "models", "model_deci.sav"), "rb"))
+        model = pickle.load(open(os.path.join(os.path.abspath(""), "models", "model_xgbo.sav"), "rb"))
         y_test_pred = model.predict(self._X_test)
         self._model_tree_acc = self.get_accuracy(y_test_pred)
-        np.save(os.path.join(os.path.abspath(""), "models", "tree_y_test_pred.npy"), y_test_pred)
+        np.save(os.path.join(os.path.abspath(""), "models", "xgbo_y_test_pred.npy"), y_test_pred)
         return
 
     def get_model_accuracy(self):
@@ -52,7 +52,7 @@ class Prediction:
         self.predict_model_tree()
         model_acc = pd.DataFrame.from_dict({"logistic regression":[self._model_lr_acc],
                                             "perceptron":[self._model_perc_acc],
-                                            "decision tree":[self._model_tree_acc]})
+                                            "xgboost":[self._model_tree_acc]})
         model_acc.to_hdf(os.path.join(os.path.abspath(""), "models", "model_acc_summary.h5"), key="df", mode="w", format="t")
         return model_acc
 

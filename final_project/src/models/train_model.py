@@ -8,6 +8,11 @@ import pandas as pd
 from src.models.data_splitting import data_splitting
 from sklearn.linear_model import Perceptron
 from sklearn.tree import DecisionTreeRegressor
+from sklearn.ensemble import GradientBoostingClassifier
+from sklearn.model_selection import GridSearchCV
+from warnings import simplefilter
+# ignore all future warnings
+simplefilter(action='ignore', category=FutureWarning)
 
 class ModelTraining:
 
@@ -16,22 +21,39 @@ class ModelTraining:
         self._y_train = y_train
 
     def train_model_lr(self):
-        model = LogisticRegression(penalty="l2", solver="newton-cg")
+        clf = LogisticRegression()
+        param_grid = {"penalty": ["l2", "none"], \
+                      "solver": ["newton-cg", "lbfgs", "liblinear"]}
+        model = GridSearchCV(clf, param_grid, cv=5, n_jobs=1, verbose=1)
         model.fit(self._X_train, self._y_train)
-        pickle.dump(model, open(os.path.join(os.path.abspath(""), "models", "model_logi.sav"), "wb"))
+        with open(os.path.join(os.path.abspath(""), "models", "model_logi.sav"), "wb") as f:
+            pickle.dump(model, f)
         return
 
     def train_model_perc(self):
-        model = Perceptron(tol=1e-3, random_state=0)
+        clf = Perceptron(tol=1e-3, random_state=0)
+        param_grid = {"penalty": ["l2", "l1", "elasticnet"], \
+                      "alpha": [0.001, 0.0001, 0.00001], \
+                      "early_stopping": [True, False], \
+                      "random_state":[0, 21, 42], \
+                      "tol": [0.001, 0.0001]}
+        model = GridSearchCV(clf, param_grid, cv=5, n_jobs=1, verbose=1)
         model.fit(X_train, y_train)
-        pickle.dump(model, open(os.path.join(os.path.abspath(""), "models", "model_perc.sav"), "wb"))
+        with open(os.path.join(os.path.abspath(""), "models", "model_perc.sav"), "wb") as f:
+            pickle.dump(model, f)
         return 
 
-    def train_model_tree(self):
-        model = DecisionTreeRegressor()
-        model.fit(X_train, y_train)
-        pickle.dump(model, open(os.path.join(os.path.abspath(""), "models", "model_deci.sav"), "wb"))
-        return
+    def train_model_xgb(self):
+        clf = GradientBoostingClassifier()
+        param_grid = {"loss": ["log_loss", "deviance", "exponential"], \
+                      "learning_rate": [0.1, 0.01, 0.001, 0.0001], \
+                      "n_estimators": [50, 100, 200, 300], \
+                      "max_depth": [1, 2, 3, 4], \
+                      "random_state": [21, 42]}
+        model = GridSearchCV(clf, param_grid, cv=5, n_jobs=1, verbose=1)
+        model.fit(self._X_train, self._y_train)
+        with open(os.path.join(os.path.abspath(""), "models", "model_xgbo.sav"), "wb") as f:
+            pickle.dump(model, f)
 
 
 
@@ -42,5 +64,5 @@ if __name__ == "__main__":
     model_training = ModelTraining(X_train, y_train)
     model_training.train_model_lr()
     model_training.train_model_perc()
-    model_training.train_model_tree()
+    model_training.train_model_xgb()
     
