@@ -52,12 +52,13 @@
 %	ABSTRACT
 %----------------------------------------------------------------------------------------
 
-\lettrineabstract{The COVID-19 pandemic has severe impacts on almost every aspect around the world. 
-It causes not only social and economic disruption, but also drastic death rates. Inevitably, people 
-are curious about the causalities of COVID-19 and how to prevent the pandemic from getting worse. In 
-this report, data are collected from 192 countries, and classification models are applied in order to get 
-a list of feature importance. It is believed that the more-important-features play more crucial role
-in the severity of the pandemic of a certain country.}
+\lettrineabstract{The goal of the report is to get the most related factors of COVID-19 
+pandemic cases in countries. In this report, data are collected from 192 countries, and classification 
+models are applied in order to get a list of feature importance. It is believed that the more-important-features 
+play more crucial role in the severity of the pandemic of a certain country. With an accuracy of 74.36\%, 
+XGBoost model suggests that human development index, life expectancy, population density, 
+hospital beds per thousand and GDP per capita of a country are the leading factors of the severity 
+of the pandemic.}
 
 %----------------------------------------------------------------------------------------
 %	ARTICLE CONTENTS
@@ -66,9 +67,11 @@ in the severity of the pandemic of a certain country.}
 %----------------------------------------------------------------------------------------
 %	INTRODUCTION
 %----------------------------------------------------------------------------------------
-\section{Introduction}The goal of the report is to get the most related factors of COVID-19 
-pandemic cases in countries. The time parameters are taken out of consideration for simplicity. 
-(write more...)
+\section{Introduction}The COVID-19 pandemic has severe impacts on almost every aspect around the world. 
+It causes not only social and economic disruption, but also drastic death rates. Inevitably, people 
+are curious about the causalities of COVID-19 and how to prevent the pandemic from getting worse. 
+Therefore, the report aims to determine the correlation between the severity of the pandemic 
+other information of a country. Notes that the time parameters are taken out of consideration for simplicity. 
 
 %----------------------------------------------------------------------------------------
 %	DOMAIN KNOWLEDGE
@@ -177,13 +180,13 @@ cross validation are listed out in \autoref{tab:model_summary}.
 		\toprule
 		\textbf{Model} & \textbf{Details} \\
 		\toprule
-		\textbf{logistic regression} & \\ 
+		\textbf{Logistic Regression} & \\ 
 		penalty & l2 \\
 		solver & newton-cg \\
 		\midrule
 		\textbf{Linear Perceptron} & \\
 		tolerance & 0.001 \\
-		penalty & l2 \\
+		random state & 0 \\
 		\midrule
 		\textbf{XGBoost} & \\
 		learning rate & 0.1\\
@@ -197,8 +200,50 @@ cross validation are listed out in \autoref{tab:model_summary}.
 \end{table}
 \subsection{Feature Importance Table}
 The feature importance is generated automatically via the trained model. It shows weight of each feature. The weight can 
-be thought of as how significant each feature effects the classification accuracy. 
+be thought of as how significant each feature effects the classification accuracy. The more positive the feature importance 
+score, the more the feature helps reduce the loss while training. However, if the feature importance is negative, the feature 
+increases the loss while training.
 \section{Results}
+By applying the test dataset on the model, the performance of the models can be evaluated. The accuracy summary of each 
+model and the feature importance table from the best performing model is shown in \autoref{tab:acc_summary} and 
+\autoref{tab:feature_importance}. Among the models, XGBoost has the best performance.
+\begin{table}
+	\caption{Model Accuracy Summary}
+	\centering
+	\begin{tabular}{ll}
+		\toprule
+		\textbf{Model} & \textbf{Summary} \\
+		\midrule
+		Logistic Regression & 61.54\% \\
+		Linear Perceptron & 48.72\% \\
+		XGBoost & 74.36\% \\
+		\bottomrule
+	\label{tab:acc_summary}
+	\end{tabular}
+\end{table}
+\begin{table}
+	\caption{Feature Importance from XGBoost}
+	\centering
+	\begin{tabular}{lll}
+		\toprule
+		& \textbf{Feature} & \textbf{Importance} \\
+		\midrule
+		1&human\_development\_index & 0.462551 \\
+		2& life\_expectancy& 0.462551\\
+		3& population\_density& 0.138737\\
+		4& hospital\_beds\_per\_thousand& 0.082238\\
+		5& gdp\_per\_capita& 0.065485\\
+		6& people\_fully\_vaccinated\_per\_hundred& 0.059118\\
+		7& cardiovasc\_death\_rate& 0.045620\\
+		8& aged\_70\_older\_percentage& 0.033860\\
+		9& median\_age& 0.029610\\
+		12& diabetes\_prevalence& 0.026468\\
+		11& aged\_65\_older\_percentage& 0.025800\\
+		\bottomrule
+	\label{tab:feature_importance}
+	\end{tabular}
+\end{table}
+
 \section{Dicussion}
 \section{Conclusion}
 %----------------------------------------------------------------------------------------
