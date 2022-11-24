@@ -21,23 +21,14 @@ class ModelTraining:
         self._y_train = y_train
 
     def train_model_lr(self):
-        clf = LogisticRegression()
-        param_grid = {"penalty": ["l2", "none"], \
-                      "solver": ["newton-cg", "lbfgs", "liblinear"]}
-        model = GridSearchCV(clf, param_grid, cv=5, n_jobs=1, verbose=1)
+        model = LogisticRegression(penalty="l2", solver="newton-cg")
         model.fit(self._X_train, self._y_train)
         with open(os.path.join(os.path.abspath(""), "models", "model_logi.sav"), "wb") as f:
             pickle.dump(model, f)
         return
 
     def train_model_perc(self):
-        clf = Perceptron(tol=1e-3, random_state=0)
-        param_grid = {"penalty": ["l2", "l1", "elasticnet"], \
-                      "alpha": [0.001, 0.0001, 0.00001], \
-                      "early_stopping": [True, False], \
-                      "random_state":[0, 21, 42], \
-                      "tol": [0.001, 0.0001]}
-        model = GridSearchCV(clf, param_grid, cv=5, n_jobs=1, verbose=1)
+        model = Perceptron(tol=1e-3, random_state=0)
         model.fit(X_train, y_train)
         with open(os.path.join(os.path.abspath(""), "models", "model_perc.sav"), "wb") as f:
             pickle.dump(model, f)

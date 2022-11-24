@@ -166,9 +166,10 @@ Classifiers are used for classification tasks. Due to the small dimension of the
 adapt the data size. The data is not splitted into training, validation and testing datasets, but only training and 
 testing only. In this task, the training-testing split will be 80\% and 20\% respectively. Besides, it is not recommended 
 to use models with too many parameters since it might have to higher chance of overfitting. Thus, simple models are 
-picked out for this task including logistic regression, linear perceptron and decision tree. These models can be easily 
-applied to the dataset with \emph{sklearn} from Python. A summary of models used for the task is shown in 
-\autoref{tab:model_summary}.
+picked out for this task including logistic regression, linear perceptron and XGBoost. These models can be easily 
+applied to the dataset with \emph{sklearn} from Python. For hyperparameter selection, grid search cross validation 
+is used. A summary of models used for the task and the best performing hyperparameters chosen by applying grid search 
+cross validation are listed out in \autoref{tab:model_summary}.
 \begin{table}
 	\caption{Model Summary}
 	\centering
@@ -184,7 +185,12 @@ applied to the dataset with \emph{sklearn} from Python. A summary of models used
 		tolerance & 0.001 \\
 		penalty & l2 \\
 		\midrule
-		\textbf{Decision Tree} & \\
+		\textbf{XGBoost} & \\
+		learning rate & 0.1\\
+		loss & deviance \\
+		max depth & 3 \\
+		n\_estimators & 100 \\
+		random state & 21 \\
 	\bottomrule
 	\label{tab:model_summary}
 	\end{tabular}

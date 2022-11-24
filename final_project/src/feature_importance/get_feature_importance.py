@@ -20,10 +20,14 @@ class FeatureImportance:
         return model
 
     def get_importance_table(self):
-        model = self.get_best_model()       
+        model = self.get_best_model()   
+        if self._best_model == "xgboost":
+            importance_score = model.best_estimator_.feature_importances_
+        else:
+            importance_score = model.coef_[0]   
         importances = pd.DataFrame(data={
             "Feature": pickle.load(open(os.path.join(os.path.abspath(""), "models", "feature_list.pkl"), "rb")),
-            "Importance": model.best_estimator_.feature_importances_
+            "Importance": importance_score
         })
         importances = importances.sort_values(by="Importance", ascending=False)
         importances.index = np.arange(1, len(importances ) + 1)
