@@ -80,12 +80,12 @@
     ```
 3. Run the docker container.
     ```
-    docker run -it -v $PWD/reports/report:/work/reports/report dtff_project/covid_report:v.1.1
+    docker run -it -v $PWD/reports/presentation:/work/reports/presentation dtff_project/covid_report:v.1.0
     ```
 4. After getting inside the docker container, navigate to ```reports/report```.
     ```
-    cd reports/report
+    cd reports/presentation
     ```
 5. Compile the ```report.tex```.
     ```
-    pdflatex report.tex
+    pdflatex presentation.tex
