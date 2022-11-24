@@ -94,3 +94,8 @@ target/
 /reports/report.run.xml
 *.xml
 /reports/report/report-blx.bib
+/reports/presentation/presentation.nav
+/reports/presentation/presentation.out
+/reports/presentation/presentation.snm
+/reports/presentation/presentation.toc
+/reports/presentation/presentation.aux
