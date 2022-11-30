@@ -15,7 +15,7 @@ class FeatureImportance:
 
     def get_best_model(self):
         model_acc = pd.read_hdf(os.path.join(os.path.abspath(""), "models", "model_acc_summary.h5"))
-        self._best_model = str(model_acc.idxmax(axis=1)[0])
+        self._best_model = str(model_acc["Accuracy"].idxmax(axis=0))
         model = pickle.load(open(os.path.join(os.path.abspath(""), "models", "model_"+self._best_model[:4]+".sav"), "rb"))
         return model
 
