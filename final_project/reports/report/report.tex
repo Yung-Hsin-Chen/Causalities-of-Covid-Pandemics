@@ -203,6 +203,35 @@ The feature importance is generated automatically via the trained model. It show
 be thought of as how significant each feature effects the classification accuracy. The more positive the feature importance 
 score, the more the feature helps reduce the loss while training. However, if the feature importance is negative, the feature 
 increases the loss while training.
+\subsection{F1-score: Micro \& Macro}
+F1 score is a metric of taking precision\footnote{According to Layman definition, percision means, 
+of all the positive predictions I made, how many of them are truly positive?} and 
+recall\footnote{According to Layman definition, percision means, of all the actual positive examples 
+out there, how many of them did I correctly predict to be positive?} into into consideration at the 
+same time per class. F1-score is defined as \autoref{eq:f1_score}.\\[10pt]
+\begin{equation}\label{eq:f1_score}
+	\begin{split}
+		\text{f1-score} &= 2\times \frac{\text{precision} \times \text{recall}}{\text{precision} + \text{recall}}\\
+		&= \frac{\text{TP}}{\text{TP}+\frac{1}{2}(\text{FP+FN})}
+	\end{split}
+\end{equation}
+Since f1-score is calculated per class, to calculate the aggregation of multi-class will become tricky. 
+This is where micro-f1 and macro-f1 come into play. They are two different ways of aggregating multi-class 
+f1-scores. Macro-f1 calculates the average of f1-scores of all classes as \autoref{eq:macro_f1}. The equation 
+shows that macro-f1 gives same weights to each class no matter how large the class is. 
+\begin{equation}\label{eq:macro_f1}
+	\text{macro-f1} = \frac{\text{sum(f1-score)}}{\text{number of classes}}
+\end{equation}
+On the other hand, micro-f1 is defined by \autoref{eq:micro_f1}. This equation is the same as the one for 
+f1-score (\autoref{eq:f1_score}). However, the TP, FP and FN stands for the sum of the metrices for all classes.  
+\begin{equation}\label{eq:micro_f1}
+	\text{micro-f1} = \frac{\text{TP}}{\text{TP}+\frac{1}{2}(\text{FP+FN})}
+\end{equation}
+This shows that f1-score views each observation points equally important. This might cause a bias of measurement 
+with imbalanced datasets. With f1-score, larger classes with more observation points will have a larger impact on 
+the f1-score.\\[10pt]
+For the task, both macro-f1 and micro-f1 will be used for the evaluation on the testing dataset. A comparison and 
+discussion of the two metrices will be explained more in \autoref{sec:discussion}.
 \section{Results}
 By applying the test dataset on the model, the performance of the models can be evaluated. The accuracy summary of each 
 model and the feature importance table from the best performing model is shown in \autoref{tab:acc_summary} and 
@@ -210,13 +239,13 @@ model and the feature importance table from the best performing model is shown i
 \begin{table}
 	\caption{Model Accuracy Summary}
 	\centering
-	\begin{tabular}{ll}
+	\begin{tabular}{lrrr}
 		\toprule
-		\textbf{Model} & \textbf{Summary} \\
+		\textbf{Model} & \textbf{Accuracy} & \textbf{Micro-f1} & \textbf{Macro-f1} \\
 		\midrule
-		Logistic Regression & 61.54\% \\
-		Linear Perceptron & 48.72\% \\
-		XGBoost & 74.36\% \\
+		Logistic Regression & 64.10\% & 0.6410 & 0.5863 \\
+		Linear Perceptron & 48.72\% & 0.4872 & 0.2976 \\
+		XGBoost & 76.92\% & 0.7692 &0.7749 \\
 		\bottomrule
 	\label{tab:acc_summary}
 	\end{tabular}
@@ -243,8 +272,13 @@ model and the feature importance table from the best performing model is shown i
 	\label{tab:feature_importance}
 	\end{tabular}
 \end{table}
-
-\section{Dicussion}
+%----------------------------------------------------------------------------------------
+%	DISCUSSION
+%----------------------------------------------------------------------------------------
+\section{Dicussion}\label{sec:discussion}
+%----------------------------------------------------------------------------------------
+%	CONCLUSION
+%----------------------------------------------------------------------------------------
 \section{Conclusion}
 %----------------------------------------------------------------------------------------
 %	BIBLIOGRAPHY

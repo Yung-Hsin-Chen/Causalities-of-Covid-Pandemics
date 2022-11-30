@@ -60,7 +60,7 @@
     ```
 3. Run the docker container.
     ```
-    docker run -it -v $PWD/reports/report:/work/reports/report dtff_project/covid_report:v.1.1
+    docker run -it -v $PWD/reports/report:/work/reports/report dtff_project/covid_report:v.1.0
     ```
 4. After getting inside the docker container, navigate to ```reports/report```.
     ```
