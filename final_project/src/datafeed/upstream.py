@@ -6,12 +6,6 @@ from connect import DATAPATH
 
 def put_covid_data():
 
-    # CHECK IF ./data/ DIRECTORY EXISTS
-    if os.path.isdir(DATAPATH) == False:
-        os.mkdir(DATAPATH)
-        os.mkdir(DATAPATH+"/external")
-        os.mkdir(DATAPATH+"/processed")
-
     url = "https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv"
     data = requests.get(url).content
 
@@ -23,7 +17,7 @@ def put_covid_data():
     col_lst = ['iso_code', 'continent', 'location', 'date', 'tests_units']
     df.loc[:,col_lst] = df[col_lst].applymap(str)
 
-    df.to_hdf("./data/external/"+df_name+".h5", key='df', mode='w') 
+    df.to_hdf(os.path.join(DATAPATH, "external", df_name+".h5"), key='df', mode='w')
     
     return
 

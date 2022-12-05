@@ -3,6 +3,8 @@ import os
 import sys
 parentdir = os.path.dirname("final_project")
 sys.path.insert(0, parentdir)
+from dotenv import dotenv_values
+PYTHONPATH = dotenv_values(".env")["PYTHONPATH"]
 from datafeed.downstream import get_covid_data
 from src.features.data_cleaning import CleanData
 from src.features.prepare_label import PrepareLabel
@@ -20,7 +22,7 @@ def build_feature(clean_data:CleanData):
     df_output = prepare_label.apply_prepare_label()
     del df_output["location"]
     df_output = df_output.fillna(0)
-    df_output.to_hdf(os.path.join(os.path.abspath(""), "data", "processed", "covid_data.h5"), key="df", mode="w", format="t")
+    df_output.to_hdf(os.path.join(PYTHONPATH, "data", "processed", "covid_data.h5"), key="df", mode="w", format="t")
 
     return
 

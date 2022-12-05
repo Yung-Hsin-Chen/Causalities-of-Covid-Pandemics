@@ -2,12 +2,13 @@ import os
 import sys
 parentdir = os.path.dirname("final_project")
 sys.path.insert(0, parentdir)
+from dotenv import dotenv_values
+PYTHONPATH = dotenv_values(".env")["PYTHONPATH"]
 from sklearn.linear_model import LogisticRegression
 import pickle
 import pandas as pd
 from src.models.data_splitting import data_splitting
 from sklearn.linear_model import Perceptron
-from sklearn.tree import DecisionTreeRegressor
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.model_selection import GridSearchCV
 from warnings import simplefilter
@@ -23,14 +24,14 @@ class ModelTraining:
     def train_model_lr(self):
         model = LogisticRegression(penalty="l2", solver="newton-cg")
         model.fit(self._X_train, self._y_train)
-        with open(os.path.join(os.path.abspath(""), "models", "model_logi.sav"), "wb") as f:
+        with open(os.path.join(PYTHONPATH, "models", "model_logi.sav"), "wb") as f:
             pickle.dump(model, f)
         return
 
     def train_model_perc(self):
         model = Perceptron(tol=1e-3, random_state=0)
-        model.fit(X_train, y_train)
-        with open(os.path.join(os.path.abspath(""), "models", "model_perc.sav"), "wb") as f:
+        model.fit(self._X_train, self._y_train)
+        with open(os.path.join(PYTHONPATH, "models", "model_perc.sav"), "wb") as f:
             pickle.dump(model, f)
         return 
 
@@ -48,12 +49,14 @@ class ModelTraining:
 
 
 
-if __name__ == "__main__":
-    df = pd.read_hdf(os.path.join(os.path.abspath(""), "data", "processed", "covid_data.h5"))
-    pickle.dump(df.columns[:-1], open(os.path.join(os.path.abspath(""), "models", "feature_list.pkl"), "wb"))
+def train():
+    df = pd.read_hdf(os.path.join(PYTHONPATH, "data", "processed", "covid_data.h5"))
+    with open(os.path.join(PYTHONPATH, "models", "feature_list.pkl"), "wb") as f:
+        pickle.dump(df.columns[:-1], f)
     X_train, X_test, y_train, y_test = data_splitting(df)
     model_training = ModelTraining(X_train, y_train)
     model_training.train_model_lr()
     model_training.train_model_perc()
     model_training.train_model_xgb()
+    return
     

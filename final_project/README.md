@@ -17,23 +17,15 @@
 
     1. Run ```upstream.py``` to load the data from external repository to local database ```data/external```.
         ```
-        docker run -it -v $PWD/data/external:/app/data/external dtff_project/covid:v.1.0 python datafeed/upstream.py
+        docker run -it -v $PWD/data/external:/app/data/external dtff_project/covid:v.1.0 python src/datafeed/upstream.py
         ```
     2. Run ```src/build_features.py``` to build features for the models and save it in local database ```data/processed```.
         ```
         docker run -it -v $PWD/data/processed:/app/data/processed dtff_project/covid:v.1.0 python src/features/build_features.py
         ```
-    3. Train the models with ```src/models/train_model.py```
+    3. Train, predict the models and get feature_importances with ```src/main.py```. This will take a bit more than 10 minutes.
         ```
-        docker run -it -v $PWD/models:/app/models dtff_project/covid:v.1.0 python src/models/train_model.py
-        ```
-    4. Predict with the models with ```src/models/predict_model.py``` and save the predicted label and model accuracy summary table in ```models```.
-        ```
-        docker run -it -v $PWD/models:/app/models dtff_project/covid:v.1.0 python src/models/predict_model.py
-        ```
-    5. Get feature importance table with ```src/feature_importance/get_geature_importance.py``` and save the feature importance table in ```models```.
-        ```
-        docker run -it -v $PWD/models:/app/models dtff_project/covid:v.1.0 python src/feature_importance/get_feature_importance.py
+        docker run -it -v $PWD/models:/app/models dtff_project/covid:v.1.0 python src/main.py
         ```
 
 ## Run Jupyter Notebook for Visualisation
