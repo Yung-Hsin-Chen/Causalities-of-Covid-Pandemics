@@ -40,7 +40,7 @@
 1. Navigate to ```final_project/```.
 2. Run the following command in a terminal. This will save the notebooks locally and show the existing notebook in the docker container.
     ```
-    docker run -p 8888:8888 --name notebook -v src/visualization:/home/dtff/covid -e JUPYTER_ENABLE_LAB=yes --env-file .env -it jupyter/datascience-notebook
+    docker run -p 8888:8888 --name notebook --rm -v $PWD/src/visualization:/home/dtff/covid -e JUPYTER_ENABLE_LAB=yes jupyter/datascience-notebook
     ```
 3. After finished using the jupyter notebook, the container can be removed by the following command.
     ```

@@ -1,7 +1,9 @@
 import os
-import sys
-parentdir = os.path.dirname("final_project")
-sys.path.insert(0, parentdir)
+import dotenv
+dotenv.load_dotenv(dotenv.find_dotenv())
+# import sys
+# parentdir = os.path.dirname("final_project")
+# sys.path.insert(0, parentdir)
 from src.models.data_splitting import data_splitting
 import pickle
 import pandas as pd
@@ -51,7 +53,8 @@ class Prediction:
         return
 
     def predict_model_tree(self):
-        model = pickle.load(open(os.path.join(os.path.abspath(""), "models", "model_xgbo.sav"), "rb"))
+        with open(os.path.join(os.path.abspath(""), "models", "model_xgbo.sav"), "rb") as f:
+            model = pickle.load(f)
         y_test_pred = model.predict(self._X_test)
         self._model_tree_acc = self.get_accuracy(y_test_pred)
         self._model_tree_f1 = self.get_f1_score(y_test_pred)
@@ -67,7 +70,7 @@ class Prediction:
                                             "Macro-f1":[self._model_lr_f1[0], self._model_perc_f1[0], self._model_tree_f1[0]]})
         model_acc.index = ["logistic regression", "perceptron", "xgboost"]
         model_acc.to_hdf(os.path.join(os.path.abspath(""), "models", "model_acc_summary.h5"), key="df", mode="w", format="t")
-        return model_acc
+        return "model_acc"
 
 if __name__ == "__main__":
     df = pd.read_hdf(os.path.join(os.path.abspath(""), "data", "processed", "covid_data.h5"))
