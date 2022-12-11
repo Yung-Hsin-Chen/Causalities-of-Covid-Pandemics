@@ -34,14 +34,6 @@
     ```
     docker run -p 8888:8888 --name notebook --rm -v $PWD/src/visualization:/home/dtff/covid -e JUPYTER_ENABLE_LAB=yes jupyter/datascience-notebook
     ```
-3. After finished using the jupyter notebook, the container can be removed by the following command.
-    ```
-    docker rm <container-id>
-    ```
-    The ```<container-id>```can be checked with 
-    ```
-    docker ps -a
-    ```
 
 ## Compile the Report
 
