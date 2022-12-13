@@ -1,9 +1,10 @@
 import pandas as pd
 from datafeed.connect import DATAPATH
+import os
 
 def get_covid_data():
 
-    covid_df = pd.read_hdf(DATAPATH+"/external/owid-covid-data.h5")
+    covid_df = pd.read_hdf(os.path.join(DATAPATH, "external", "owid-covid-data.h5"))
 
     return covid_df
 

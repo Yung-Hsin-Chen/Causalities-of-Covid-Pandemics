@@ -1,4 +1,6 @@
 import os
+from dotenv import dotenv_values
+PYTHONPATH = dotenv_values(".env")["PYTHONPATH"]
 import sys
 parentdir = os.path.dirname("final_project")
 sys.path.insert(0, parentdir)
@@ -14,9 +16,9 @@ class FeatureImportance:
         # self._model = ""
 
     def get_best_model(self):
-        model_acc = pd.read_hdf(os.path.join(os.path.abspath(""), "models", "model_acc_summary.h5"))
+        model_acc = pd.read_hdf(os.path.join(PYTHONPATH, "models", "model_acc_summary.h5"))
         self._best_model = str(model_acc["Accuracy"].idxmax(axis=0))
-        model = pickle.load(open(os.path.join(os.path.abspath(""), "models", "model_"+self._best_model[:4]+".sav"), "rb"))
+        model = pickle.load(open(os.path.join(PYTHONPATH, "models", "model_"+self._best_model[:4]+".sav"), "rb"))
         return model
 
     def get_importance_table(self):
@@ -26,15 +28,16 @@ class FeatureImportance:
         else:
             importance_score = model.coef_[0]   
         importances = pd.DataFrame(data={
-            "Feature": pickle.load(open(os.path.join(os.path.abspath(""), "models", "feature_list.pkl"), "rb")),
+            "Feature": pickle.load(open(os.path.join(PYTHONPATH, "models", "feature_list.pkl"), "rb")),
             "Importance": importance_score
         })
         importances = importances.sort_values(by="Importance", ascending=False)
         importances.index = np.arange(1, len(importances ) + 1)
-        importances.to_hdf(os.path.join(os.path.abspath(""), "models", "feature_importance.h5"), key="df", mode="w", format="t")
+        importances.to_hdf(os.path.join(PYTHONPATH, "models", "feature_importance.h5"), key="df", mode="w", format="t")
         return importances
 
-if __name__ == "__main__":
+def feature_importance():
     feature_importance = FeatureImportance()
     importances = feature_importance.get_importance_table()
     print(importances)
+    return

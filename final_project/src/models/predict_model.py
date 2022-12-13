@@ -1,4 +1,6 @@
 import os
+from dotenv import dotenv_values
+PYTHONPATH = dotenv_values(".env")["PYTHONPATH"]
 import sys
 parentdir = os.path.dirname("final_project")
 sys.path.insert(0, parentdir)
@@ -35,11 +37,11 @@ class Prediction:
         return (macro_f1, micro_f1)
 
     def predict_model_lr(self):
-        model = pickle.load(open(os.path.join(os.path.abspath(""), "models", "model_logi.sav"), "rb"))
+        model = pickle.load(open(os.path.join(PYTHONPATH, "models", "model_logi.sav"), "rb"))
         y_test_pred = model.predict(self._X_test)
         self._model_lr_acc = self.get_accuracy(y_test_pred)
         self._model_lr_f1 = self.get_f1_score(y_test_pred)
-        np.save(os.path.join(os.path.abspath(""), "models", "lr_y_test_pred.npy"), y_test_pred)
+        np.save(os.path.join(PYTHONPATH, "models", "lr_y_test_pred.npy"), y_test_pred)
         return
 
     def predict_model_perc(self):
@@ -47,15 +49,16 @@ class Prediction:
         y_test_pred = model.predict(self._X_test)
         self._model_perc_acc = self.get_accuracy(y_test_pred)
         self._model_perc_f1 = self.get_f1_score(y_test_pred)
-        np.save(os.path.join(os.path.abspath(""), "models", "perc_y_test_pred.npy"), y_test_pred)
+        np.save(os.path.join(PYTHONPATH, "models", "perc_y_test_pred.npy"), y_test_pred)
         return
 
     def predict_model_tree(self):
-        model = pickle.load(open(os.path.join(os.path.abspath(""), "models", "model_xgbo.sav"), "rb"))
+        with open(os.path.join(PYTHONPATH, "models", "model_xgbo.sav"), "rb") as f:
+            model = pickle.load(f)
         y_test_pred = model.predict(self._X_test)
         self._model_tree_acc = self.get_accuracy(y_test_pred)
         self._model_tree_f1 = self.get_f1_score(y_test_pred)
-        np.save(os.path.join(os.path.abspath(""), "models", "xgbo_y_test_pred.npy"), y_test_pred)
+        np.save(os.path.join(PYTHONPATH, "models", "xgbo_y_test_pred.npy"), y_test_pred)
         return
 
     def get_model_accuracy(self):
@@ -66,12 +69,13 @@ class Prediction:
                                             "Micro-f1":[self._model_lr_f1[1], self._model_perc_f1[1], self._model_tree_f1[1]],
                                             "Macro-f1":[self._model_lr_f1[0], self._model_perc_f1[0], self._model_tree_f1[0]]})
         model_acc.index = ["logistic regression", "perceptron", "xgboost"]
-        model_acc.to_hdf(os.path.join(os.path.abspath(""), "models", "model_acc_summary.h5"), key="df", mode="w", format="t")
+        model_acc.to_hdf(os.path.join(PYTHONPATH, "models", "model_acc_summary.h5"), key="df", mode="w", format="t")
         return model_acc
 
-if __name__ == "__main__":
-    df = pd.read_hdf(os.path.join(os.path.abspath(""), "data", "processed", "covid_data.h5"))
+def predict():
+    df = pd.read_hdf(os.path.join(PYTHONPATH, "data", "processed", "covid_data.h5"))
     X_train, X_test, y_train, y_test = data_splitting(df)
     prediction = Prediction(X_test, y_test)
     model_acc = prediction.get_model_accuracy()
     print(model_acc)
+    return
