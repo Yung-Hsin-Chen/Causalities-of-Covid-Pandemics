@@ -79,30 +79,67 @@ other information of a country. Notes that the time parameters are taken out of 
 \section{Domain Knowledge}\label{sec:domain_knowledge}
 In this section, tools and domain knowledges used in the task and reasons of choosing them  will be 
 briefly explained including models used (logistic regression, linear perceptron, XGBoost), evaluation metrices 
-(micro-f1, macro-f1) and visualisations (confusion matrix, normalised confusion matrix).
-\subsection{Logistic Regression}
-Logistic regression is commonly used for classification problems. It aims to fit the probability of an event 
-belonging to a certain class, which can be illustrated in \autoref{eq:logits}.
-\begin{equation}\label{eq:logits}
-	\overbrace{log\underbrace{\left(\frac{P(X)}{1-P(X)}\right)}_\text{odd}}^\text{logit function} = \beta_0 + \beta_1X + \beta_2X^2 +...
+(micro-f1, macro-f1) and visualisations (confusion matrix, normalised confusion matrix).\\
+\subsection{Models}
+The models used in the task are linear perceptron, logistic regression and XGBoost. The three models are chosen to adapt 
+the small data size of the COVID data. All models have limited parameters and are thus less likely to overfitting, which 
+can happen easily with small datasets. The linear perceptron is the simpliest model and will serve as the base-line model. 
+\subsubsection{Linear Perceptron}
+Linear Perceptron is a very simple model for binary classification, which can later be adapted to multi-class classification 
+repeating the process with paired up the classes. The architecture of linear perceptron is straightforward. After 
+each data are multiplied by weights and biases, the result (a scalars) will be passed to the activation function. In the case of 
+unit-step function as the activation function, numbers larger than 0 will be assigned to a class, and those smaller than 0 will be 
+assigned to the other class. The whole process can be summarised by \autoref{eq:perc}.
+\begin{equation}\label{eq:perc}
+	y_\text{predicted} = \text{unit-step}\left(\beta_0 + \beta_1X_1+ \beta_2X_2+ ...\right)
 \end{equation}
-However, the logit function ranges from -inf to inf, making it sensitive to outliers like linear regression and hard to address 
-the loss function. In order to output the probability of the event belonging to a certain class, the logit function is mapped 
-back to the probability as shown in \autoref{eq:sigmoid}, which is also known as the Sigmoid function.
-\begin{equation}\label{eq:sigmoid}
-	P(X) = \frac{e^{\beta_0 + \beta_1X + \beta_2X^2 +...}}{1+e^{\beta_0 + \beta_1X + \beta_2X^2 +...}}
-\end{equation}
-The algorithm of logistic regression aims to fit the best Sigmoid curve for the training data by calculating gradients of the 
-log likelihood function in \autoref{eq:lr_mle} by applying maximum likelihood estimation (MLE).
-\begin{equation}\label{eq:lr_mle}
-\begin{split}
-	& \text{likelihood function} = \\
-	& L(\beta) = \prod\left(p(x_i)^y_i(1-p(x_i))^{1-y_i}\right)\\
-	&log(L(\beta)) = \sum_i\left(y_ilogP(x_i)+(1-y_i)(1-P(x_i))\right)
-\end{split}
-\end{equation}
-\subsection{Linear Perceptron}
-\subsection{F1-score: Micro \& Macro}
+The output with a list of predicted classes will be compared with the actual classes by a loss function. 
+The weights and biases will then be updated by applying stochastic gradient dcecent to the loss function. The perceptron is 
+gauranteed to converge if the classes is linearly separable, but has the problem of stucking in the local minima.\\[10pt]
+Although linear perceptron is fast to implement and is less inclined to overfitting with small datasets, \autoref{eq:perc} gives away 
+the linearity decision surface nature of logistic regression. It also indicates the no-multicollinearity requirements between 
+independent variables and the high sensitivity to outliers like linear regression does. Besides, it only takes on yes and no outputs 
+and does not consider calibrated prababilities.
+\subsubsection{Logistic Regression}
+Logistic regression is a linear model commonly used for classification problems as well. It is very similar to the 
+linear perceptron model except for the activation function. The activation function for logistic regression is Sigmoid function. 
+% It aims to fit the probability of an event belonging to a certain class, which can be illustrated in \autoref{eq:logits}.
+% \begin{equation}\label{eq:logits}
+% 	\overbrace{log\underbrace{\left(\frac{P(X)}{1-P(X)}\right)}_\text{odd}}^\text{logit function} = \beta_0 + \beta_1X + \beta_2X^2 +...
+% \end{equation}
+% However, the logit function ranges from -inf to inf, making it hard to address 
+% the loss function. In order to output the probability of the event belonging to a certain class, the logit function is mapped 
+% back to the probability as shown in \autoref{eq:sigmoid}, which is also known as the Sigmoid function. This function serves as the 
+% activation function of the logistic regression.
+% \begin{equation}\label{eq:sigmoid}
+% 	P(X) = \frac{e^{\beta_0 + \beta_1X + \beta_2X^2 +...}}{1+e^{\beta_0 + \beta_1X + \beta_2X^2 +...}}
+% \end{equation}
+For logistic regression, regularisation terms are also added to the loss function as a penalty for overfitting.\\[10pt]
+With the Sigmoid function in mind, it is obvious that logistic regression is mostly used for binary classification and can 
+be extended to multi-class classification like linear perceptron.\\[10pt]
+Similar to linear perceptron, logistic regression is also sensitive to outliers and does not allow multicollinearity. However, it 
+no longer takes on only yes or no as outputs because the real world is not likely a binary answer world. Instead, it allows 
+continuous probabilities for outputs, which is fitted by the Sigmoid function. With probability over 0.5, the output is 
+assigned to a class, and with probability lower than 0.5, the output will be assigned to the other class. The regularisation 
+terms also prevent the model from overfitting.
+\subsubsection{XGBoost}
+XGBoost is a gradient boosting model with extra structures that has been proved well performed on classification tasks. 
+The boosting model creates weak learner (decision tree) one by one. The previous weak learner set a larger weight for the wrong answers 
+as the input to the next weak learner. By going through the sequence, the classification will eventually be finalised correctly. 
+Each weak learner will have their own predictions, and together they will have to vote to decide what the final answer is. The less 
+accurate weak learners get less votes.\\[10pt]
+XGBoost has the advantage of tackling non-linear problems and does not require non-multicollinearity on data. It is also very efficient 
+due to the parellel tree boosting and less parameters to be trained comparing to deep neural networks. Although the boosting models are 
+greedy, resulting in higher chance of ovrfitting, setting the correct maximum depth of the trees can effectively avoid this problem.
+\subsection{Evaluation}
+Since it is a classification task, f1-score is commonly used for model evaluation. However, f1-score is only calculated per class. 
+The multi-class case will require the aggregation of f1-scores of each class to determine the overal performance of the models on 
+all classes. Micro-f1 and macro-f1 are two different ways of aggregating the f1-scores of each class and will be used as the 
+evaluation metrics of this task. In addition, the confusion matrix and the normalised confusion matrix will be used as the visualisation 
+of the evaluation.
+\subsubsection{Metrics}
+After training, the model will be tested on the testing dataset. The performance of the models will then be tested by 
+the evaluation metrics. Metrics used for this task are micro-f1 and macro-f1.\\[10pt]
 F1 score is a metric of taking precision\footnote{According to Layman definition, percision means, 
 of all the positive predictions I made, how many of them are truly positive?} and 
 recall\footnote{According to Layman definition, percision means, of all the actual positive examples 
@@ -128,9 +165,15 @@ f1-score (\autoref{eq:f1_score}). However, the TP, FP and FN stands for the sum 
 \end{equation}
 This shows that f1-score views each observation points equally important. This might cause a bias of measurement 
 with imbalanced datasets. With f1-score, larger classes with more observation points will have a larger impact on 
-the f1-score.\\[10pt]
-For the task, both macro-f1 and micro-f1 will be used for the evaluation on the testing dataset. A comparison and 
-discussion of the two metrices will be explained more in \autoref{sec:discussion}.
+the f1-score. A comparison and discussion of the two metrices will be explained more in \autoref{sec:discussion}.
+\subsubsection{Visualisation}
+To visualise how well the model performs, a confusion matrix will be the most suitable tool. The confusion matrix aims 
+to check if the model is classifying correctly or confusing different classes. Each number in the row represents the 
+number of instances of the actual class, while each number in the column is the number of instances of the predicted 
+class. The brighter the squares indicates the more number of instances. Ideally, the diagonal squares should be the 
+brightest. However, some class has fewer data, resulting in darker colour of squares even the data are all classified 
+correctly. Therefore, in the report, both confusion matrix and normalised confusion matrix will be shown. The normalised 
+confusion matrix helps elimiate the unbalanced dataset issue. 
 %----------------------------------------------------------------------------------------
 %	METHOD
 %----------------------------------------------------------------------------------------
@@ -140,7 +183,9 @@ features for the models, training and predicting classifiers and generating the 
 Classifiers and other used tools are introduced and explained in \autoref{sec:domain_knowledge}.
 \subsection{Data}
 Data used for this task is from covid-19-data from Our World of Data. It is online in a github repository, making 
-it easy to access. The data is loaded into the local database by the \emph{request} package of Python.\\[10pt]
+it easy to access. The data is loaded into the local database by the \emph{request} package of Python. Each time 
+the data is downloaded, the newest data (up-to-date) will be fetched from the github repository. Thus, 
+the result might be slightly different every time. The result of this report is executed with data up til 30. Nov. 2022.\\[10pt]
 The data consists of 67 columns and 248 countries with 236386 rows in total. Attribute \emph{location} and 
 \emph{date} together define each unique row of data. The data is still being updated. 
 A summary table of the data is shown 
@@ -259,7 +304,8 @@ increases the loss while training.
 \section{Results}
 By applying the test dataset on the model, the performance of the models can be evaluated. The accuracy summary of each 
 model and the feature importance table from the best performing model is shown in \autoref{tab:acc_summary} and 
-\autoref{tab:feature_importance}. Among the models, XGBoost has the best performance. Among the features, the model suggests 
+\autoref{tab:feature_importance}\footnote{The result can be replicated by taking the data up to 30. Nov. 2022.}. 
+Among the models, XGBoost has the best performance. Among the features, the model suggests 
 that human development index\footnote{According to \href{https://github.com/owid/covid-19-data/tree/master/public/data}{Our World In Data}, 
 human development index is: A composite index measuring average achievement in three basic dimensions of human 
 development—a long and healthy life, knowledge and a decent standard of living. Values for 2019, imported from 
@@ -288,7 +334,7 @@ and gdp per capita are the top five items that affect the covid cases per millio
 		\toprule
 		& \textbf{Feature} & \textbf{Importance} \\
 		\midrule
-		1&human\_development\_index & 0.462551 \\
+		1& human\_development\_index & 0.462551 \\
 		2& life\_expectancy& 0.462551\\
 		3& population\_density& 0.138737\\
 		4& hospital\_beds\_per\_thousand& 0.082238\\
@@ -306,12 +352,12 @@ and gdp per capita are the top five items that affect the covid cases per millio
 %----------------------------------------------------------------------------------------
 %	DISCUSSION
 %----------------------------------------------------------------------------------------
-\section{Dicussion}\label{sec:discussion}
-
-%----------------------------------------------------------------------------------------
-%	CONCLUSION
-%----------------------------------------------------------------------------------------
-\section{Conclusion}
+\section{Dicussion \& Conclusion}\label{sec:discussion}
+From the feature importance table, it can be concluded that the severity of covid is more related 
+to the human development index. The human development index is a score on the quality of living in the 
+country including average life expectanvy, GDP, education opportunity, etc. The number of people fully 
+vaccinated, the population composition or the diabetes prevalence do not play the most important role 
+in the total cases as expected.   
 %----------------------------------------------------------------------------------------
 %	BIBLIOGRAPHY
 %----------------------------------------------------------------------------------------
