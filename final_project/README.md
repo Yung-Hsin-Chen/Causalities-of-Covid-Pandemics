@@ -32,7 +32,7 @@
 1. Navigate to ```final_project/```.
 2. Run the following command in a terminal. This will save the notebooks locally and show the existing notebook in the docker container.
     ```
-    docker run -p 8888:8888 --name notebook --rm -v $PWD/src/visualization:/home/dtff/covid -e JUPYTER_ENABLE_LAB=yes jupyter/datascience-notebook
+    docker run -p 8888:8888 --name notebook --rm -v $PWD/src/visualization:/home/jovyan/notebook -v $PWD/data/external:/home/jovyan/data/external -v $PWD/data/processed:/home/jovyan/data/processed -v $PWD/models:/home/jovyan/models -e JUPYTER_ENABLE_LAB=yes jupyter/datascience-notebook
     ```
 
 ## Compile the Report
