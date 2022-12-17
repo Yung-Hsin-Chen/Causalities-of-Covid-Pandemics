@@ -34,7 +34,7 @@ def loading_data():
     X_train, X_test, y_train, y_test = data_splitting(df)
     return df_raw, df, feature_importance, model_acc_summary, feature_list, \
            lr_y_test_pred, perc_y_test_pred, xgbo_y_test_pred, model_logi, \
-           model_perc, model_xgbo
+           model_perc, model_xgbo, X_train, X_test, y_train, y_test
 
 def plot_label_bar(df: pd.DataFrame) -> None:
     y_lst = df["total_cases_per_million_level"].value_counts().tolist()
@@ -79,5 +79,46 @@ def plot_corr(df: pd.DataFrame, feature_list):
     plt.yticks(range(11), feature_list.tolist(), rotation=0)
     cb = plt.colorbar(fraction=0.046, pad=0.04)
     cb.ax.tick_params(labelsize=10)
+    plt.show()
+    return
+
+def plot_conf_mx(model: str, y_test, lr_y_test_pred, perc_y_test_pred, xgbo_y_test_pred) -> None:
+    d = {"logistic regression": lr_y_test_pred,
+         "linear perceptron": perc_y_test_pred,
+         "xgboost": xgbo_y_test_pred}
+    conf_mx = confusion_matrix(y_test, d[model])
+    fig, ax = plt.subplots(figsize=(4,4))
+    im = ax.matshow(conf_mx, cmap="pink")
+
+    divider = make_axes_locatable(ax)
+    cax = divider.append_axes("right", size="5%", pad=0.05)
+
+    ax.set_xticklabels([""]+["level 1", "levle 2", "levle 3", "levle 4"])
+    ax.set_yticklabels([""]+["level 1", "levle 2", "levle 3", "levle 4"])
+
+    plt.colorbar(im, cax=cax)
+
+    plt.show()
+    return
+
+def plot_norm_conf_mx(model: str, y_test, lr_y_test_pred, perc_y_test_pred, xgbo_y_test_pred) -> None:
+    d = {"logistic regression": lr_y_test_pred,
+         "linear perceptron": perc_y_test_pred,
+         "xgboost": xgbo_y_test_pred}
+    conf_mx = confusion_matrix(y_test, d[model])
+    row_sums = conf_mx.sum(axis=1, keepdims=True)
+    norm_conf_mx = conf_mx / row_sums
+
+    fig, ax = plt.subplots(figsize=(4, 4))
+    im = ax.matshow(norm_conf_mx, cmap="pink")
+
+    divider = make_axes_locatable(ax)
+    cax = divider.append_axes("right", size="5%", pad=0.05)
+
+    ax.set_xticklabels([""]+["level 1", "level 2", "level 3", "level 4"])
+    ax.set_yticklabels([""]+["level 1", "level 2", "level 3", "level 4"])
+
+    plt.colorbar(im, cax=cax)
+
     plt.show()
     return
