@@ -7,6 +7,10 @@
 * [Compile the Report](#compile-the-report)
 * [Compile the Presentation](#compile-the-presentation)
 
+Welcome everyone! This repository allows you to play around with the covid pandemic data. It aims to get the most influenced causalities of the pandemic. Find out more about how we did it in the report and presentation!
+
+By following the instructions below, you can create your own results. The results and data will be saved to the notebook, where you can explore more.  
+
 ## Run Files
 1. Navigate to ```final_project/```.
 2. Build a docker image.
@@ -23,7 +27,7 @@
         ```
         docker run -it -v $PWD/data/processed:/app/data/processed dtff_project/covid:v.1.0 python src/features/build_features.py
         ```
-    3. Train, predict the models and get feature_importances with ```src/main.py```. This will take a bit more than 10 minutes.
+    3. Train, predict the models and get feature_importances with ```src/main.py```. This will take a bit more than 10 minutes. 
         ```
         docker run -it -v $PWD/models:/app/models dtff_project/covid:v.1.0 python src/main.py
         ```
