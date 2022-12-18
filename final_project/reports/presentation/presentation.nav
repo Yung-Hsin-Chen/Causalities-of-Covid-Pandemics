@@ -54,13 +54,8 @@
 \headcommand {\beamer@framepages {21}{21}}
 \headcommand {\slideentry {4}{0}{5}{22/22}{}{0}}
 \headcommand {\beamer@framepages {22}{22}}
-\headcommand {\beamer@sectionpages {18}{22}}
+\headcommand {\beamer@partpages {1}{22}}
 \headcommand {\beamer@subsectionpages {18}{22}}
-\headcommand {\sectionentry {5}{References}{23}{References}{0}}
-\headcommand {\slideentry {5}{0}{1}{23/23}{}{0}}
-\headcommand {\beamer@framepages {23}{23}}
-\headcommand {\beamer@partpages {1}{23}}
-\headcommand {\beamer@subsectionpages {23}{23}}
-\headcommand {\beamer@sectionpages {23}{23}}
-\headcommand {\beamer@documentpages {23}}
-\headcommand {\gdef \inserttotalframenumber {23}}
+\headcommand {\beamer@sectionpages {18}{22}}
+\headcommand {\beamer@documentpages {22}}
+\headcommand {\gdef \inserttotalframenumber {22}}
