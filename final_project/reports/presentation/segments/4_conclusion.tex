@@ -5,13 +5,13 @@ model and the feature importance table from the best performing model is shown i
 	\caption{Model Accuracy Summary}
 	\centering
 	\begin{tabular}{lrrr}
-		\toprule
+		\hline
 		\textbf{Model} & \textbf{Accuracy} & \textbf{Micro-f1} & \textbf{Macro-f1} \\
-		\midrule
+		\hline
 		Logistic Regression & 64.10\% & 0.6410 & 0.5863 \\
 		Linear Perceptron & 48.72\% & 0.4872 & 0.2976 \\
 		XGBoost & 76.92\% & 0.7692 &0.7749 \\
-		\bottomrule
+		\hline
 	\label{tab:acc_summary}
 	\end{tabular}
 \end{table}
@@ -22,7 +22,7 @@ Since XGBoost is the best performing model, its visualisation will be shown.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.4\linewidth]{presentation/images/illustrate/confma.jpeg}
+    \includegraphics[width=0.4\linewidth]{images/illustrate/confma.jpeg}
     \caption{Confusion Matrix}
     \end{figure}
 
@@ -33,7 +33,7 @@ In the normalised confusion matrix, it is clear that the darker square of level 
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\linewidth]{presentation/images/illustrate/normconfma.jpeg}
+    \includegraphics[width=0.5\linewidth]{images/illustrate/normconfma.jpeg}
     \caption{Normalized Confusion Matrix}
     \end{figure}
 \end{frame}

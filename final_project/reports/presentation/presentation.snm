@@ -1,0 +1,8 @@
+\beamer@slide {eq:f1_score}{10}
+\beamer@slide {eq:macro_f1}{11}
+\beamer@slide {eq:micro_f1}{12}
+\beamer@slide {tab:data_summary}{14}
+\beamer@slide {tab:attributes}{15}
+\beamer@slide {tab:model_summary}{16}
+\beamer@slide {tab:feature_importance}{17}
+\beamer@slide {tab:acc_summary}{19}

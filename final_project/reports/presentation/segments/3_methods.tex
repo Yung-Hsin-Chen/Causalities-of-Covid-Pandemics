@@ -4,15 +4,15 @@ Data used for this task is from covid-19-data from Our World of Data. A summary 
 	\caption{Data Summary Table}
 	\centering
 	\begin{tabular}{lr}
-		\toprule
+		\hline
 		\textbf{Information} & \textbf{Description} \\
-		\midrule
+		\hline
 		number of columns & 67 \\
 		number of rows & 236386 \\
 		number of countries & 248 \\
 		key & \{location:date\}\\
 		starting date & 01.Jan.2020\\
-		\bottomrule
+		\hline
 	\label{tab:data_summary}
 	\end{tabular}
 \end{table}
@@ -25,16 +25,16 @@ After data cleaning, we select certain attributes for our classification task as
 	\caption{Data Summary Table}
 	\centering
 	\begin{tabular}{ll}
-		\toprule
+		\hline
 		\textbf{Selected Attributes} &  \\
-		\midrule
+		\hline
 		aged\_65\_older & cardiovasc\_death\_rate \\
 		aged\_70\_older & diabetes\_prevalence \\
 		gdp\_per\_capita & hospital\_beds\_per\_thousand \\
 		population\_density & human\_development\_index \\
 		life\_expectancy & median\_age \\
 		\multicolumn{2}{l}{people\_fully\_vaccinated\_per\_hundred} \\
-		\bottomrule
+		\hline
 	\label{tab:attributes}
 	\end{tabular}
 \end{table}
@@ -49,24 +49,24 @@ Classifiers are used for classification tasks. Our data is splitted into trainin
 	\caption{Model Summary}
 	\centering
 	\begin{tabular}{lr}
-		\toprule
+		\hline
 		\textbf{Model} & \textbf{Details} \\
-		\toprule
+		\hline
 		\textbf{Logistic Regression} & \\ 
 		penalty & l2 \\
 		solver & newton-cg \\
-		\midrule
+		\hline
 		\textbf{Linear Perceptron} & \\
 		tolerance & 0.001 \\
 		random state & 0 \\
-		\midrule
+		\hline
 		\textbf{XGBoost} & \\
 		learning rate & 0.1\\
 		loss & deviance \\
 		max depth & 3 \\
 		n\_estimators & 100 \\
 		random state & 21 \\
-	\bottomrule
+		\hline
 	\label{tab:model_summary}
 	\end{tabular}
 \end{table}
@@ -79,9 +79,9 @@ The feature importance is generated automatically. The higher the weight, the mo
 	\caption{Feature Importance from XGBoost}
 	\centering
 	\begin{tabular}{lll}
-		\toprule
+		\hline
 		& \textbf{Feature} & \textbf{Importance} \\
-		\midrule
+		\hline
 		1& human\_development\_index & 0.462551 \\
 		2& life\_expectancy& 0.462551\\
 		3& population\_density& 0.138737\\
@@ -93,7 +93,7 @@ The feature importance is generated automatically. The higher the weight, the mo
 		9& median\_age& 0.029610\\
 		10& diabetes\_prevalence& 0.026468\\
 		11& aged\_65\_older\_percentage& 0.025800\\
-		\bottomrule
+		\hline
 	\label{tab:feature_importance}
 	\end{tabular}
 \end{table}
