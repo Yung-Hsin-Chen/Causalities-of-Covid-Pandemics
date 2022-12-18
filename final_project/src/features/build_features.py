@@ -5,7 +5,7 @@ parentdir = os.path.dirname("final_project")
 sys.path.insert(0, parentdir)
 from dotenv import dotenv_values
 PYTHONPATH = dotenv_values(".env")["PYTHONPATH"]
-from datafeed.downstream import get_covid_data
+from src.datafeed.downstream import get_covid_data
 from src.features.data_cleaning import CleanData
 from src.features.prepare_label import PrepareLabel
 

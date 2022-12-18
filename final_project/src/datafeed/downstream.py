@@ -1,5 +1,5 @@
 import pandas as pd
-from datafeed.connect import DATAPATH
+from src.datafeed.connect import DATAPATH
 import os
 
 def get_covid_data():

@@ -52,7 +52,7 @@
     ```
 5. Compile the ```report.tex```.
     ```
-    pdflatex report.tex
+    pdflatex report
     ```
 
 ## Compile the Presentation
@@ -72,4 +72,5 @@
     ```
 5. Compile the ```report.tex```.
     ```
-    pdflatex presentation.tex
+    pdflatex presentation
+    ```
