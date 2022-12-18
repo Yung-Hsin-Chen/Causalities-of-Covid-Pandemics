@@ -1,0 +1,100 @@
+\begin{frame}{Methods: Data Summary}
+Data used for this task is from covid-19-data from Our World of Data. A summary table of the data is shown in Table \autoref{tab:data_summary}.
+\begin{table}
+	\caption{Data Summary Table}
+	\centering
+	\begin{tabular}{lr}
+		\toprule
+		\textbf{Information} & \textbf{Description} \\
+		\midrule
+		number of columns & 67 \\
+		number of rows & 236386 \\
+		number of countries & 248 \\
+		key & \{location:date\}\\
+		starting date & 01.Jan.2020\\
+		\bottomrule
+	\label{tab:data_summary}
+	\end{tabular}
+\end{table}
+\end{frame}
+
+\begin{frame}{Methods: Data Cleaning}
+After data cleaning, we select certain attributes for our classification task as shown in Table \autoref{tab:attributes}, and categorize total\_cases\_per\_million into 4 levels of severity, namely: [0, 50000, 200000, 400000, 700000].
+\\
+\begin{table}
+	\caption{Data Summary Table}
+	\centering
+	\begin{tabular}{ll}
+		\toprule
+		\textbf{Selected Attributes} &  \\
+		\midrule
+		aged\_65\_older & cardiovasc\_death\_rate \\
+		aged\_70\_older & diabetes\_prevalence \\
+		gdp\_per\_capita & hospital\_beds\_per\_thousand \\
+		population\_density & human\_development\_index \\
+		life\_expectancy & median\_age \\
+		\multicolumn{2}{l}{people\_fully\_vaccinated\_per\_hundred} \\
+		\bottomrule
+	\label{tab:attributes}
+	\end{tabular}
+\end{table}
+\end{frame}
+
+\begin{frame}{Methods: Classifiers}
+\begin{columns}
+\column{0.5\textwidth}
+Classifiers are used for classification tasks. Our data is splitted into training (80\%) and testing (20\%) only due to its small size. A summary of models used for the task and the best performing hyperparameters chosen by applying grid search cross validation are listed out in Table \autoref{tab:model_summary}.
+\column{0.5\textwidth}
+\begin{table}
+	\caption{Model Summary}
+	\centering
+	\begin{tabular}{lr}
+		\toprule
+		\textbf{Model} & \textbf{Details} \\
+		\toprule
+		\textbf{Logistic Regression} & \\ 
+		penalty & l2 \\
+		solver & newton-cg \\
+		\midrule
+		\textbf{Linear Perceptron} & \\
+		tolerance & 0.001 \\
+		random state & 0 \\
+		\midrule
+		\textbf{XGBoost} & \\
+		learning rate & 0.1\\
+		loss & deviance \\
+		max depth & 3 \\
+		n\_estimators & 100 \\
+		random state & 21 \\
+	\bottomrule
+	\label{tab:model_summary}
+	\end{tabular}
+\end{table}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Methods: Feature Importance}
+The feature importance is generated automatically. The higher the weight, the more significant its effect on the accuracy.
+\begin{table}
+	\caption{Feature Importance from XGBoost}
+	\centering
+	\begin{tabular}{lll}
+		\toprule
+		& \textbf{Feature} & \textbf{Importance} \\
+		\midrule
+		1& human\_development\_index & 0.462551 \\
+		2& life\_expectancy& 0.462551\\
+		3& population\_density& 0.138737\\
+		4& hospital\_beds\_per\_thousand& 0.082238\\
+		5& gdp\_per\_capita& 0.065485\\
+		6& people\_fully\_vaccinated\_per\_hundred& 0.059118\\
+		7& cardiovasc\_death\_rate& 0.045620\\
+		8& aged\_70\_older\_percentage& 0.033860\\
+		9& median\_age& 0.029610\\
+		10& diabetes\_prevalence& 0.026468\\
+		11& aged\_65\_older\_percentage& 0.025800\\
+		\bottomrule
+	\label{tab:feature_importance}
+	\end{tabular}
+\end{table}
+\end{frame}
