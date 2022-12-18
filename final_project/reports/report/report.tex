@@ -85,7 +85,7 @@ The models used in the task are linear perceptron, logistic regression and XGBoo
 the small data size of the COVID data. All models have limited parameters and are thus less likely to overfitting, which 
 can happen easily with small datasets. The linear perceptron is the simpliest model and will serve as the base-line model. 
 \subsubsection{Linear Perceptron}
-Linear Perceptron is a very simple model for binary classification, which can later be adapted to multi-class classification 
+Linear Perceptron\citep{Sagar}\citep{Ali} is a very simple model for binary classification, which can later be adapted to multi-class classification 
 repeating the process with paired up the classes. The architecture of linear perceptron is straightforward. After 
 each data are multiplied by weights and biases, the result (a scalars) will be passed to the activation function. In the case of 
 unit-step function as the activation function, numbers larger than 0 will be assigned to a class, and those smaller than 0 will be 
@@ -94,14 +94,14 @@ assigned to the other class. The whole process can be summarised by \autoref{eq:
 	y_\text{predicted} = \text{unit-step}\left(\beta_0 + \beta_1X_1+ \beta_2X_2+ ...\right)
 \end{equation}
 The output with a list of predicted classes will be compared with the actual classes by a loss function. 
-The weights and biases will then be updated by applying stochastic gradient dcecent to the loss function. The perceptron is 
+The weights and biases will then be updated by applying stochastic gradient dcecent\citep{Abhijit} to the loss function. The perceptron is 
 gauranteed to converge if the classes is linearly separable, but has the problem of stucking in the local minima.\\[10pt]
 Although linear perceptron is fast to implement and is less inclined to overfitting with small datasets, \autoref{eq:perc} gives away 
 the linearity decision surface nature of logistic regression. It also indicates the no-multicollinearity requirements between 
 independent variables and the high sensitivity to outliers like linear regression does. Besides, it only takes on yes and no outputs 
 and does not consider calibrated prababilities.
 \subsubsection{Logistic Regression}
-Logistic regression is a linear model commonly used for classification problems as well. It is very similar to the 
+Logistic regression\citep{Arun}\citep{Mazen}\citep{Tanvi} is a linear model commonly used for classification problems as well. It is very similar to the 
 linear perceptron model except for the activation function. The activation function for logistic regression is Sigmoid function. 
 % It aims to fit the probability of an event belonging to a certain class, which can be illustrated in \autoref{eq:logits}.
 % \begin{equation}\label{eq:logits}
@@ -121,9 +121,9 @@ Similar to linear perceptron, logistic regression is also sensitive to outliers 
 no longer takes on only yes or no as outputs because the real world is not likely a binary answer world. Instead, it allows 
 continuous probabilities for outputs, which is fitted by the Sigmoid function. With probability over 0.5, the output is 
 assigned to a class, and with probability lower than 0.5, the output will be assigned to the other class. The regularisation 
-terms also prevent the model from overfitting.
+terms also prevent the model from overfitting\citep{Geek}.
 \subsubsection{XGBoost}
-XGBoost is a gradient boosting model with extra structures that has been proved well performed on classification tasks. 
+XGBoost\citep{Rohan}\citep{ODSC} is a gradient boosting model with extra structures that has been proved well performed on classification tasks. 
 The boosting model creates weak learner (decision tree) one by one. The previous weak learner set a larger weight for the wrong answers 
 as the input to the next weak learner. By going through the sequence, the classification will eventually be finalised correctly. 
 Each weak learner will have their own predictions, and together they will have to vote to decide what the final answer is. The less 
@@ -132,7 +132,7 @@ XGBoost has the advantage of tackling non-linear problems and does not require n
 due to the parellel tree boosting and less parameters to be trained comparing to deep neural networks. Although the boosting models are 
 greedy, resulting in higher chance of ovrfitting, setting the correct maximum depth of the trees can effectively avoid this problem.
 \subsection{Evaluation}
-Since it is a classification task, f1-score is commonly used for model evaluation. However, f1-score is only calculated per class. 
+Since it is a classification task, f1-score\citep{Kenneth} is commonly used for model evaluation. However, f1-score is only calculated per class. 
 The multi-class case will require the aggregation of f1-scores of each class to determine the overal performance of the models on 
 all classes. Micro-f1 and macro-f1 are two different ways of aggregating the f1-scores of each class and will be used as the 
 evaluation metrics of this task. In addition, the confusion matrix and the normalised confusion matrix will be used as the visualisation 
@@ -182,8 +182,9 @@ In this section, the methods of this particular task will be explained, includin
 features for the models, training and predicting classifiers and generating the feature importance table. 
 Classifiers and other used tools are introduced and explained in \autoref{sec:domain_knowledge}.
 \subsection{Data}
-Data used for this task is from covid-19-data from Our World of Data. It is online in a github repository, making 
-it easy to access. The data is loaded into the local database by the \emph{request} package of Python. Each time 
+Data used for this task is from covid-19-data from Our World of Data. It is online in a github repository
+\footnote{The data can be found here: \url{https://github.com/owid/covid-19-data/tree/master/public/data}}, making 
+it easy to access. The data is loaded into the local database\citep{Thomas} by the \emph{request} package of Python. Each time 
 the data is downloaded, the newest data (up-to-date) will be fetched from the github repository. Thus, 
 the result might be slightly different every time. The result of this report is executed with data up til 30. Nov. 2022.\\[10pt]
 The data consists of 67 columns and 248 countries with 236386 rows in total. Attribute \emph{location} and 
@@ -353,6 +354,30 @@ and gdp per capita are the top five items that affect the covid cases per millio
 %	DISCUSSION
 %----------------------------------------------------------------------------------------
 \section{Dicussion \& Conclusion}\label{sec:discussion}
+Besides the accuracies and f1-scores of the models, visualisations also help with the understanding 
+of how the models perform. Since XGBoost is the best performing model, the visualisation of it will be shown. \\[5pt]
+
+The confusion matrix (\autoref{fig:conf_mx}) shows that most classes are classified correctly with the diagonal squares brighter 
+than the others. However, due to the fact that level 4 has fewer data size than the others, it is hard to 
+tell if it actually performs worse than the other levels. \\[5pt]
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{fig/conf_mx.png} 
+	\caption{Confusion Matrix of XGBoost Result} 
+	\label{fig:conf_mx} 
+	% \ref{bear}
+\end{figure}
+
+In the normalised confusion matrix (\autoref{fig:norm_conf_mx}), it is clear that the darker square of level 4 is caused by the smaller 
+datasize of the class. The model is actually performing well even on smaller data size classes. That is why 
+the macro-f1 is larger than micro-f1.\\[5pt]
+\begin{figure}
+	\includegraphics[width=\linewidth]{fig/norm_conf_mx.png} 
+	\caption{Confusion Matrix of XGBoost Result} 
+	\label{fig:norm_conf_mx} 
+	% \ref{bear}
+\end{figure}
+
 From the feature importance table, it can be concluded that the severity of covid is more related 
 to the human development index. The human development index is a score on the quality of living in the 
 country including average life expectanvy, GDP, education opportunity, etc. The number of people fully 
