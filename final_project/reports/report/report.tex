@@ -27,7 +27,7 @@
 %	ARTICLE INFORMATION
 %----------------------------------------------------------------------------------------
 
-\title{Effective Methods for Capturing Cattle Rustlers} % The article title
+\title{Causalities of Covid Pandemic} % The article title
 
 \author{
 	\authorstyle{Yung-Hsin Chen\textsuperscript{1} and Haoxin Cai\textsuperscript{1}} % Authors
@@ -54,7 +54,7 @@
 
 \lettrineabstract{The goal of the report is to get the most related factors of COVID-19 
 pandemic cases in countries. In this report, data are collected from 192 countries, and classification 
-models are applied in order to get a list of feature importance. It is believed that the more-important-features 
+models are applied in order to get a list of feature importances. It is believed that the more-important-features 
 play more crucial role in the severity of the pandemic of a certain country. With an accuracy of 74.36\%, 
 XGBoost model suggests that human development index, life expectancy, population density, 
 hospital beds per thousand and GDP per capita of a country are the leading factors of the severity 
@@ -67,27 +67,27 @@ of the pandemic.}
 %----------------------------------------------------------------------------------------
 %	INTRODUCTION
 %----------------------------------------------------------------------------------------
-\section{Introduction}The COVID-19 pandemic has severe impacts on almost every aspect around the world. 
-It causes not only social and economic disruption, but also drastic death rates. Inevitably, people 
+\section{Introduction}The COVID-19 pandemic has had severe impacts on almost every aspect around the world. 
+It causes not only social and economic disruption but also drastic death rates. Inevitably, people 
 are curious about the causalities of COVID-19 and how to prevent the pandemic from getting worse. 
 Therefore, the report aims to determine the correlation between the severity of the pandemic 
-other information of a country. Notes that the time parameters are taken out of consideration for simplicity. 
+other information about a country. Note that the time parameters are taken out of consideration for simplicity. 
 
 %----------------------------------------------------------------------------------------
 %	DOMAIN KNOWLEDGE
 %----------------------------------------------------------------------------------------
 \section{Domain Knowledge}\label{sec:domain_knowledge}
-In this section, tools and domain knowledges used in the task and reasons of choosing them  will be 
-briefly explained including models used (logistic regression, linear perceptron, XGBoost), evaluation metrices 
+In this section, tools and domain knowledge used in the task and reasons for choosing them  will be 
+briefly explained including models used (logistic regression, linear perceptron, XGBoost), evaluation metrics 
 (micro-f1, macro-f1) and visualisations (confusion matrix, normalised confusion matrix).\\
 \subsection{Models}
 The models used in the task are linear perceptron, logistic regression and XGBoost. The three models are chosen to adapt 
-the small data size of the COVID data. All models have limited parameters and are thus less likely to overfitting, which 
+the small data size of the COVID data. All models have limited parameters and are thus less likely to overfit, which 
 can happen easily with small datasets. The linear perceptron is the simpliest model and will serve as the base-line model. 
 \subsubsection{Linear Perceptron}
 Linear Perceptron\citep{Sagar}\citep{Ali} is a very simple model for binary classification, which can later be adapted to multi-class classification 
 repeating the process with paired up the classes. The architecture of linear perceptron is straightforward. After 
-each data are multiplied by weights and biases, the result (a scalars) will be passed to the activation function. In the case of 
+each data are multiplied by weights and biases, each corresponding result (a scalar) will be passed to the activation function. In the case of 
 unit-step function as the activation function, numbers larger than 0 will be assigned to a class, and those smaller than 0 will be 
 assigned to the other class. The whole process can be summarised by \autoref{eq:perc}.
 \begin{equation}\label{eq:perc}
@@ -95,7 +95,7 @@ assigned to the other class. The whole process can be summarised by \autoref{eq:
 \end{equation}
 The output with a list of predicted classes will be compared with the actual classes by a loss function. 
 The weights and biases will then be updated by applying stochastic gradient dcecent\citep{Abhijit} to the loss function. The perceptron is 
-gauranteed to converge if the classes is linearly separable, but has the problem of stucking in the local minima.\\[10pt]
+guaranteed to converge if the classes is linearly separable, but has the problem of stucking in the local minima.\\[10pt]
 Although linear perceptron is fast to implement and is less inclined to overfitting with small datasets, \autoref{eq:perc} gives away 
 the linearity decision surface nature of logistic regression. It also indicates the no-multicollinearity requirements between 
 independent variables and the high sensitivity to outliers like linear regression does. Besides, it only takes on yes and no outputs 
@@ -119,8 +119,8 @@ With the Sigmoid function in mind, it is obvious that logistic regression is mos
 be extended to multi-class classification like linear perceptron.\\[10pt]
 Similar to linear perceptron, logistic regression is also sensitive to outliers and does not allow multicollinearity. However, it 
 no longer takes on only yes or no as outputs because the real world is not likely a binary answer world. Instead, it allows 
-continuous probabilities for outputs, which is fitted by the Sigmoid function. With probability over 0.5, the output is 
-assigned to a class, and with probability lower than 0.5, the output will be assigned to the other class. The regularisation 
+continuous probabilities for outputs, which are fitted by the Sigmoid function. With a probability over 0.5, the output is 
+assigned to a class, and vice versa. The regularisation 
 terms also prevent the model from overfitting\citep{Geek}.
 \subsubsection{XGBoost}
 XGBoost\citep{Rohan}\citep{ODSC} is a gradient boosting model with extra structures that has been proved well performed on classification tasks. 
@@ -140,10 +140,10 @@ of the evaluation.
 \subsubsection{Metrics}
 After training, the model will be tested on the testing dataset. The performance of the models will then be tested by 
 the evaluation metrics. Metrics used for this task are micro-f1 and macro-f1.\\[10pt]
-F1 score is a metric of taking precision\footnote{According to Layman definition, percision means, 
+F1 score is a metric of taking precision\footnote{According to Layman definition, precision means, 
 of all the positive predictions I made, how many of them are truly positive?} and 
-recall\footnote{According to Layman definition, percision means, of all the actual positive examples 
-out there, how many of them did I correctly predict to be positive?} into into consideration at the 
+recall\footnote{According to Layman definition, precision means, of all the actual positive examples 
+out there, how many of them did I correctly predict to be positive?} into consideration at the 
 same time per class. F1-score is defined as \autoref{eq:f1_score}.\\[10pt]
 \begin{equation}\label{eq:f1_score}
 	\begin{split}
@@ -163,9 +163,9 @@ f1-score (\autoref{eq:f1_score}). However, the TP, FP and FN stands for the sum 
 \begin{equation}\label{eq:micro_f1}
 	\text{micro-f1} = \frac{\text{TP}}{\text{TP}+\frac{1}{2}(\text{FP+FN})}
 \end{equation}
-This shows that f1-score views each observation points equally important. This might cause a bias of measurement 
-with imbalanced datasets. With f1-score, larger classes with more observation points will have a larger impact on 
-the f1-score. A comparison and discussion of the two metrices will be explained more in \autoref{sec:discussion}.
+This shows that micro-f1 views each observation points equally important. This might cause a bias of measurement 
+with imbalanced datasets. With micro-f1, larger classes with more observation points will have a larger impact on 
+the micro-f1. A comparison and discussion of the two metrices will be explained more in \autoref{sec:discussion}.
 \subsubsection{Visualisation}
 To visualise how well the model performs, a confusion matrix will be the most suitable tool. The confusion matrix aims 
 to check if the model is classifying correctly or confusing different classes. Each number in the row represents the 
@@ -178,7 +178,7 @@ confusion matrix helps elimiate the unbalanced dataset issue.
 %	METHOD
 %----------------------------------------------------------------------------------------
 \section{Method}
-In this section, the methods of this particular task will be explained, including introduction of data, building 
+In this section, the methods of this particular task will be explained, including the introduction of data, building 
 features for the models, training and predicting classifiers and generating the feature importance table. 
 Classifiers and other used tools are introduced and explained in \autoref{sec:domain_knowledge}.
 \subsection{Data}
@@ -209,15 +209,15 @@ in \autoref{tab:data_summary}.
 \end{table}
 \subsection{Building Features}
 The process of building features includes data cleaning and feature selection, and label preparation. Data cleaning 
-and feature selecting is crucial for the accuracy of models. Bad data cleaning can lead to biased results or 
+and feature selection are crucial for the accuracy of models. Bad data cleaning can lead to biased results or 
 bad model performances. Relevant attributes will be selected as features to be put into the classifiers, i.e., 
 the models. Finally, since this is a supervised learning task, the label should be prepared for model training.\\[10pt]
 In the data cleaning phase, the goal is to get a table of one row per country, i.e., each row represents the 
 information of a country. The label is defined as the attribute, \emph{total\_cases\_per\_million}. To achieve this, 
-relavent attributes are first selected for model training. For this task, eleven attributes that is speculated to 
+relavant attributes are first selected for model training. A total of eleven attributes that are speculated to 
 affect the number of COVID cases are selected from the raw data. The selected attributes are listed in 
-\autoref{tab:attributes}. Countries with less than 200 rows of data is then removed. Since each row corresponds 
-to one date, it is not ideal to use the data of a country if less than 200 days of data are recorded. Among the 
+\autoref{tab:attributes}. Countries with less than 200 rows of data are then removed since the inadequate of recorded data 
+might be the sign of inaccuracy. Among the 
 selected attributes, \emph{aged\_65\_older} and \emph{aged\_70\_older} are divided by \emph{population} into 
 \emph{aged\_65\_older\_percentage} and \emph{aged\_70\_older\_percentage} respectively so that the models are 
 trained on the percentage of elder people instead of the total number. Except for the attribute 
@@ -226,7 +226,7 @@ for each country. However, the attribute \emph{people\_fully\_vaccinated\_per\_h
 \emph{total\_cases\_per\_million} is accumulated day by day. In this case, the data of the latest date is used as 
 the feature value for each country. By doing this, the model will be able to generate the feature importance 
 table according to how all features affect the number of total cases per million in each country. After data 
-cleaning and feature selection, 194 countries/rows and 11 features are left for model training.\\[10pt]
+cleaning and feature selection, 194 countries/rows, 10 features and one label are left for model training.\\[10pt]
 \begin{table}
 	\caption{Data Summary Table}
 	\centering
@@ -246,7 +246,7 @@ cleaning and feature selection, 194 countries/rows and 11 features are left for 
 \end{table}
 After data cleaning and feature selection, label preparation is performed. The attribute \emph{total\_cases\_per\_million} 
 is categorised into four levels of severity. The interval of the categorisation is shown in \autoref{tab:label_interval}. 
-Apparently, there is no country with over 700'000 cases per million. 
+There is no country with over 700'000 cases per million. 
 \begin{table}
 	\caption{Label Interval for Label Preparation}
 	\centering
@@ -355,7 +355,7 @@ and gdp per capita are the top five items that affect the covid cases per millio
 %----------------------------------------------------------------------------------------
 \section{Dicussion \& Conclusion}\label{sec:discussion}
 Besides the accuracies and f1-scores of the models, visualisations also help with the understanding 
-of how the models perform. Since XGBoost is the best performing model, the visualisation of it will be shown. \\[5pt]
+of how the models perform. Since XGBoost is the best performing model, its visualisation will be shown. \\[5pt]
 
 The confusion matrix (\autoref{fig:conf_mx}) shows that most classes are classified correctly with the diagonal squares brighter 
 than the others. However, due to the fact that level 4 has fewer data size than the others, it is hard to 
@@ -369,7 +369,7 @@ tell if it actually performs worse than the other levels. \\[5pt]
 \end{figure}
 
 In the normalised confusion matrix (\autoref{fig:norm_conf_mx}), it is clear that the darker square of level 4 is caused by the smaller 
-datasize of the class. The model is actually performing well even on smaller data size classes. That is why 
+data size of the class. The model is actually performing well even on smaller data size classes. That is why 
 the macro-f1 is larger than micro-f1.\\[5pt]
 \begin{figure}
 	\includegraphics[width=\linewidth]{fig/norm_conf_mx.png} 
