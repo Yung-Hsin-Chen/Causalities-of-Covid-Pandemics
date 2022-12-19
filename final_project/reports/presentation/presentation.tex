@@ -10,6 +10,8 @@
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{verbatim}
 \usepackage{hyperref}
+\usepackage[backend=biber,style=numeric, citestyle=ieee]{biblatex}
+\addbibresource{ref.bib}
 \AtBeginSection[]{ 
     \begin{frame}{Outline} 
         \tableofcontents[currentsection] 
@@ -43,11 +45,11 @@
 \input{segments/4_conclusion}
 
 
-% \section*{References}
-% \begin{frame}
-%     \frametitle{References}
-%     \bibliographystyle{amsalpha}
-%     \bibliography{ref.bib}
-% \end{frame}
+\section*{References}
+\begin{frame}[t,allowframebreaks]
+    \frametitle{References}
+    \nocite{*}
+    \printbibliography[heading=none]
+    \end{frame}
 
 \end{document}
