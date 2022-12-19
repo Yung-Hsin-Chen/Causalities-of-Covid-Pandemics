@@ -7,9 +7,9 @@
 * [Compile the Report](#compile-the-report)
 * [Compile the Presentation](#compile-the-presentation)
 
-Welcome everyone! This repository allows you to play around with the covid pandemic data. It aims to get the most influenced causalities of the pandemic. Find out more about how we did it in the report and presentation!
+Welcome everyone! This repository allows you to play around with the covid pandemic data. It aims to get the most influenced causalities of the pandemic. Find out more about how we did it in the report and presentation located in ```final_project/reports/``` folder!
 
-By following the instructions below, you can create your own results. The results and data will be saved to the notebook, where you can explore more.  
+By following the instructions below, you can download and clean your own data and train it by the provided three models. The results and data will be saved to the notebook, where you can explore more.  
 
 ## Run Files
 1. Navigate to ```final_project/```.
@@ -34,7 +34,7 @@ By following the instructions below, you can create your own results. The result
 
 ## Run Jupyter Notebook for Visualisation
 1. Navigate to ```final_project/```.
-2. Run the following command in a terminal. This will save the notebooks locally and show the existing notebook in the docker container.
+2. Run the following command in a terminal. This will save the notebooks locally and show the existing notebook in the docker container. All results will be loaded into the notebook automatically. Just enter the notebook directory in the container, find the ```visualize_EDA.ipynb``` and have fun with your own visualisations.
     ```
     docker run -p 8888:8888 --name notebook --rm -v $PWD/src/visualization:/home/jovyan/notebook -v $PWD/data/external:/home/jovyan/data/external -v $PWD/data/processed:/home/jovyan/data/processed -v $PWD/models:/home/jovyan/models -e JUPYTER_ENABLE_LAB=yes jupyter/datascience-notebook
     ```
@@ -62,7 +62,7 @@ By following the instructions below, you can create your own results. The result
 ## Compile the Presentation
 
 1. Navigate to ```final_project/```.
-2. Build the docker container.
+2. Build the docker container (the same container as the report one).
     ```
     docker build -t dtff_project/covid_report:v.1.0 . -f reports/Dockerfile
     ```
