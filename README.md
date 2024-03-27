@@ -1,40 +1,91 @@
-# Digital Tools for Finance
+# Causalities of Covid Pandemics
+## Digital Tools for Finance Final Project
 
 ## Table of contents
-* [Final Project](#final-project)
-* [Homework](#homework)
-    * [Week 1](#week-1)
-    * [Week 2](#week-2)
-    * [Week 3](#week-3)
-    * [Week 4](#week-4)
-    * [Week 5](#week-5)
-* [Reference](#reference)
+* [Run Files](#run-files)
+* [Run Jupyter Notebook for Visualisation](#run-jupyter-notebook-for-visualisation)
+* [Compile the Report](#compile-the-report)
+* [Compile the Presentation](#compile-the-presentation)
 
-## Final Project
-
-## Homework
-### Week 1
-### Week 2
-
-The file, plot.py, creates a pie chart of Pringles Original Chips nutritions from the data in ./data/coding-environment-exercise.csv. A docker file is provided so that no additional dependencies are needed to install. Please follow the steps below to plot the figure yourself (assuming dockers are installed).
-
-1. Navigate to week_2 folder.
-2. Build the image by the following command:
+## Run Files
+1. Navigate to ```final_project/```.
+2. Build a docker image.
     ```
-    docker build -t dtff/plot-pringles:v.1.1 .
+    docker build -t dtff_project/covid:v.1.0 . -f Dockerfile
     ```
-3. Run the container with the following command:
+3. Run the container in an interactive mode.
+
+    1. Run ```upstream.py``` to load the data from external repository to local database ```data/external```.
+        ```
+        docker run -it -v $PWD/data/external:/app/data/external dtff_project/covid:v.1.0 python datafeed/upstream.py
+        ```
+    2. Run ```src/build_features.py``` to build features for the models and save it in local database ```data/processed```.
+        ```
+        docker run -it -v $PWD/data/processed:/app/data/processed dtff_project/covid:v.1.0 python src/features/build_features.py
+        ```
+    3. Train the models with ```src/models/train_model.py```
+        ```
+        docker run -it -v $PWD/models:/app/models dtff_project/covid:v.1.0 python src/models/train_model.py
+        ```
+    4. Predict with the models with ```src/models/predict_model.py``` and save the predicted label and model accuracy summary table in ```models```.
+        ```
+        docker run -it -v $PWD/models:/app/models dtff_project/covid:v.1.0 python src/models/predict_model.py
+        ```
+    5. Get feature importance table with ```src/feature_importance/get_geature_importance.py``` and save the feature importance table in ```models```.
+        ```
+        docker run -it -v $PWD/models:/app/models dtff_project/covid:v.1.0 python src/feature_importance/get_feature_importance.py
+        ```
+
+## Run Jupyter Notebook for Visualisation
+1. Navigate to ```final_project/```.
+2. Run the following command in a terminal. This will save the notebooks locally and show the existing notebook in the docker container.
     ```
-    docker run -it -v $PWD/result:/app/result dtff/plot-pringles:v.1.1 python plot.py
+    docker run -p 8888:8888 --name notebook -v $PWD/src/visualization:/home/dtff/covid -e JUPYTER_ENABLE_LAB=yes --env-file .env -it jupyter/datascience-notebook
     ```
-4. Find the plot in the ./result/ folder locally.
+3. After finished using the jupyter notebook, the container can be removed by the following command.
+    ```
+    docker rm <container-id>
+    ```
+    The ```<container-id>```can be checked with 
+    ```
+    docker ps -a
+    ```
 
-### Week 3
-### Week 4
-### Week 5
+## Compile the Report
 
-The file generate_data.py is used to generate a large file with gzip, h5 and feather extensions. data.feather file is tracked via git lfs and pushed to origin/midterm.
+1. Navigate to ```final_project/```.
+2. Build the docker container.
+    ```
+    docker build -t dtff_project/covid_report:v.1.0 . -f reports/Dockerfile
+    ```
+3. Run the docker container.
+    ```
+    docker run -it -v $PWD/reports/report:/work/reports/report dtff_project/covid_report:v.1.1
+    ```
+4. After getting inside the docker container, navigate to ```reports/report```.
+    ```
+    cd reports/report
+    ```
+5. Compile the ```report.tex```.
+    ```
+    pdflatex report.tex
+    ```
 
-The file time_used.txt noted down the time used to generate the three data files.
+## Compile the Presentation
 
-## Reference
+1. Navigate to ```final_project/```.
+2. Build the docker container.
+    ```
+    docker build -t dtff_project/covid_report:v.1.0 . -f reports/Dockerfile
+    ```
+3. Run the docker container.
+    ```
+    docker run -it -v $PWD/reports/report:/work/reports/report dtff_project/covid_report:v.1.1
+    ```
+4. After getting inside the docker container, navigate to ```reports/report```.
+    ```
+    cd reports/report
+    ```
+5. Compile the ```report.tex```.
+    ```
+    pdflatex report.tex

@@ -1,0 +1,55 @@
+\documentclass{beamer}
+\usetheme{Boadilla}
+\usecolortheme{seahorse}
+\usefonttheme{serif}
+
+
+
+\usepackage{lipsum}
+\usepackage{graphicx,xcolor}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{verbatim}
+\usepackage{hyperref}
+\usepackage[backend=biber,style=numeric, citestyle=ieee]{biblatex}
+\addbibresource{ref.bib}
+\AtBeginSection[]{ 
+    \begin{frame}{Outline} 
+        \tableofcontents[currentsection] 
+    \end{frame} }
+
+\title[Causalities of the Covid Pandemic]{Causalities of the Covid Pandemic}
+\subtitle{Digital Tools for Finance Final Project}
+\author[Y. Chen, H. Cai]{Yung-Hsin Chen 20-744-322
+\\ Haoxin Cai 20-742-151}
+\institute[IfI, UZH]{Department of Informatics\\University of Zurich}
+\date{Dec. 19, 2022}
+\titlegraphic{\includegraphics[width=4cm]{images/logo/uzh.png}}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+
+\section{Introduction}
+\input{segments/1_intro}
+
+\section{Domain Knowledge}
+\input{segments/2_domainknowledge}
+
+\section{Methods}
+\input{segments/3_methods}
+
+\section{Discussion \& Conclusion}
+\input{segments/4_conclusion}
+
+
+\section*{References}
+\begin{frame}[t,allowframebreaks]
+    \frametitle{References}
+    \nocite{*}
+    \printbibliography[heading=none]
+    \end{frame}
+
+\end{document}

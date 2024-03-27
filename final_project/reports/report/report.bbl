@@ -1,0 +1,347 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nyt/global//global/global}
+    \entry{Arun}{online}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=e6aa218776a0c7604b25f3ff8bff1822}{%
+           family={Addagatla},
+           familyi={A\bibinitperiod},
+           given={Arun},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{e6aa218776a0c7604b25f3ff8bff1822}
+      \strng{fullhash}{e6aa218776a0c7604b25f3ff8bff1822}
+      \strng{bibnamehash}{e6aa218776a0c7604b25f3ff8bff1822}
+      \strng{authorbibnamehash}{e6aa218776a0c7604b25f3ff8bff1822}
+      \strng{authornamehash}{e6aa218776a0c7604b25f3ff8bff1822}
+      \strng{authorfullhash}{e6aa218776a0c7604b25f3ff8bff1822}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labeldatesource}{nodate}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{addendum}{(accessed: 11.12.2022)}
+      \field{title}{Understanding Logistic Regression}
+      \verb{urlraw}
+      \verb https://medium.com/nerd-for-tech/understanding-logistic-regression-782baa868a54
+      \endverb
+      \verb{url}
+      \verb https://medium.com/nerd-for-tech/understanding-logistic-regression-782baa868a54
+      \endverb
+    \endentry
+    \entry{Mazen}{online}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=88b99b4bd267f3d2e5d66d1f60d818de}{%
+           family={Ahmed},
+           familyi={A\bibinitperiod},
+           given={Mazen},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{88b99b4bd267f3d2e5d66d1f60d818de}
+      \strng{fullhash}{88b99b4bd267f3d2e5d66d1f60d818de}
+      \strng{bibnamehash}{88b99b4bd267f3d2e5d66d1f60d818de}
+      \strng{authorbibnamehash}{88b99b4bd267f3d2e5d66d1f60d818de}
+      \strng{authornamehash}{88b99b4bd267f3d2e5d66d1f60d818de}
+      \strng{authorfullhash}{88b99b4bd267f3d2e5d66d1f60d818de}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labeldatesource}{nodate}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{addendum}{(accessed: 11.12.2022)}
+      \field{title}{Logistic Regression Explained}
+      \verb{urlraw}
+      \verb https://linguisticmaz.medium.com/logistic-regression-explained-1849a0f5ce54
+      \endverb
+      \verb{url}
+      \verb https://linguisticmaz.medium.com/logistic-regression-explained-1849a0f5ce54
+      \endverb
+    \endentry
+    \entry{Geek}{online}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=87e145345e718e548314ee2de132ff69}{%
+           family={Geeks},
+           familyi={G\bibinitperiod},
+           given={Geek},
+           giveni={G\bibinitperiod},
+           givenun=0,
+           prefix={for},
+           prefixi={f\bibinitperiod},
+           prefixun=0}}%
+      }
+      \strng{namehash}{87e145345e718e548314ee2de132ff69}
+      \strng{fullhash}{87e145345e718e548314ee2de132ff69}
+      \strng{bibnamehash}{87e145345e718e548314ee2de132ff69}
+      \strng{authorbibnamehash}{87e145345e718e548314ee2de132ff69}
+      \strng{authornamehash}{87e145345e718e548314ee2de132ff69}
+      \strng{authorfullhash}{87e145345e718e548314ee2de132ff69}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labeldatesource}{nodate}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{addendum}{(accessed: 11.12.2022)}
+      \field{title}{Advantages and Disadvantages of Logistic Regression}
+      \verb{urlraw}
+      \verb https://www.geeksforgeeks.org/advantages-and-disadvantages-of-logistic-regression/
+      \endverb
+      \verb{url}
+      \verb https://www.geeksforgeeks.org/advantages-and-disadvantages-of-logistic-regression/
+      \endverb
+    \endentry
+    \entry{Ali}{online}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=dfd14c69d2338ce9cf556c819a32d286}{%
+           family={Ghodsi},
+           familyi={G\bibinitperiod},
+           given={Ali},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{dfd14c69d2338ce9cf556c819a32d286}
+      \strng{fullhash}{dfd14c69d2338ce9cf556c819a32d286}
+      \strng{bibnamehash}{dfd14c69d2338ce9cf556c819a32d286}
+      \strng{authorbibnamehash}{dfd14c69d2338ce9cf556c819a32d286}
+      \strng{authornamehash}{dfd14c69d2338ce9cf556c819a32d286}
+      \strng{authorfullhash}{dfd14c69d2338ce9cf556c819a32d286}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labeldatesource}{nodate}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{addendum}{(accessed: 11.12.2022)}
+      \field{title}{Statistical Learning- Classification}
+      \verb{urlraw}
+      \verb https://sas.uwaterloo.ca/~aghodsib/courses/f07stat841/notes/lecture10.pdf
+      \endverb
+      \verb{url}
+      \verb https://sas.uwaterloo.ca/~aghodsib/courses/f07stat841/notes/lecture10.pdf
+      \endverb
+    \endentry
+    \entry{Rohan}{online}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=4ea6cb04f1fcf218f5e8302c6075b63a}{%
+           family={Harode},
+           familyi={H\bibinitperiod},
+           given={Rohan},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{4ea6cb04f1fcf218f5e8302c6075b63a}
+      \strng{fullhash}{4ea6cb04f1fcf218f5e8302c6075b63a}
+      \strng{bibnamehash}{4ea6cb04f1fcf218f5e8302c6075b63a}
+      \strng{authorbibnamehash}{4ea6cb04f1fcf218f5e8302c6075b63a}
+      \strng{authornamehash}{4ea6cb04f1fcf218f5e8302c6075b63a}
+      \strng{authorfullhash}{4ea6cb04f1fcf218f5e8302c6075b63a}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labeldatesource}{nodate}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{addendum}{(accessed: 11.12.2022)}
+      \field{title}{XGBoost: A Deep Dive into Boosting}
+      \verb{urlraw}
+      \verb https://medium.com/sfu-cspmp/xgboost-a-deep-dive-into-boosting-f06c9c41349
+      \endverb
+      \verb{url}
+      \verb https://medium.com/sfu-cspmp/xgboost-a-deep-dive-into-boosting-f06c9c41349
+      \endverb
+    \endentry
+    \entry{Kenneth}{online}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=129e18884f4520f0ae5aad0b2992f693}{%
+           family={Leung},
+           familyi={L\bibinitperiod},
+           given={Kenneth},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{129e18884f4520f0ae5aad0b2992f693}
+      \strng{fullhash}{129e18884f4520f0ae5aad0b2992f693}
+      \strng{bibnamehash}{129e18884f4520f0ae5aad0b2992f693}
+      \strng{authorbibnamehash}{129e18884f4520f0ae5aad0b2992f693}
+      \strng{authornamehash}{129e18884f4520f0ae5aad0b2992f693}
+      \strng{authorfullhash}{129e18884f4520f0ae5aad0b2992f693}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labeldatesource}{nodate}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{addendum}{(accessed: 11.12.2022)}
+      \field{title}{Micro, Macro \& Weighted Averages of F1 Score, Clearly Explained}
+      \verb{urlraw}
+      \verb https://towardsdatascience.com/micro-macro-weighted-averages-of-f1-score-clearly-explained-b603420b292f
+      \endverb
+      \verb{url}
+      \verb https://towardsdatascience.com/micro-macro-weighted-averages-of-f1-score-clearly-explained-b603420b292f
+      \endverb
+    \endentry
+    \entry{Thomas}{online}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=2d90aeaa6c4e73f6733d1d9d4498254a}{%
+           family={Menestrel},
+           familyi={M\bibinitperiod},
+           given={Thomas\bibnamedelima Le},
+           giveni={T\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{2d90aeaa6c4e73f6733d1d9d4498254a}
+      \strng{fullhash}{2d90aeaa6c4e73f6733d1d9d4498254a}
+      \strng{bibnamehash}{2d90aeaa6c4e73f6733d1d9d4498254a}
+      \strng{authorbibnamehash}{2d90aeaa6c4e73f6733d1d9d4498254a}
+      \strng{authornamehash}{2d90aeaa6c4e73f6733d1d9d4498254a}
+      \strng{authorfullhash}{2d90aeaa6c4e73f6733d1d9d4498254a}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labeldatesource}{nodate}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{addendum}{(accessed: 11.12.2022)}
+      \field{title}{Loading a csv file from GitHub in Python}
+      \verb{urlraw}
+      \verb https://medium.com/towards-entrepreneurship/importing-a-csv-file-from-github-in-a-jupyter-notebook-e2c28e7e74a5
+      \endverb
+      \verb{url}
+      \verb https://medium.com/towards-entrepreneurship/importing-a-csv-file-from-github-in-a-jupyter-notebook-e2c28e7e74a5
+      \endverb
+    \endentry
+    \entry{Tanvi}{online}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=59b41ce2919e4113f63b2e1ceb3c138d}{%
+           family={Penumudy},
+           familyi={P\bibinitperiod},
+           given={Tanvi},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{59b41ce2919e4113f63b2e1ceb3c138d}
+      \strng{fullhash}{59b41ce2919e4113f63b2e1ceb3c138d}
+      \strng{bibnamehash}{59b41ce2919e4113f63b2e1ceb3c138d}
+      \strng{authorbibnamehash}{59b41ce2919e4113f63b2e1ceb3c138d}
+      \strng{authornamehash}{59b41ce2919e4113f63b2e1ceb3c138d}
+      \strng{authorfullhash}{59b41ce2919e4113f63b2e1ceb3c138d}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labeldatesource}{nodate}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{addendum}{(accessed: 11.12.2022)}
+      \field{title}{A Comprehensive Guide to Logistic Regression}
+      \verb{urlraw}
+      \verb https://medium.com/analytics-vidhya/a-comprehensive-guide-to-logistic-regression-e0cf04fe738c
+      \endverb
+      \verb{url}
+      \verb https://medium.com/analytics-vidhya/a-comprehensive-guide-to-logistic-regression-e0cf04fe738c
+      \endverb
+    \endentry
+    \entry{Abhijit}{online}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=4c4ac2f8b79fd38ff6bfc72530a47920}{%
+           family={Roy},
+           familyi={R\bibinitperiod},
+           given={Abhijit},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{4c4ac2f8b79fd38ff6bfc72530a47920}
+      \strng{fullhash}{4c4ac2f8b79fd38ff6bfc72530a47920}
+      \strng{bibnamehash}{4c4ac2f8b79fd38ff6bfc72530a47920}
+      \strng{authorbibnamehash}{4c4ac2f8b79fd38ff6bfc72530a47920}
+      \strng{authornamehash}{4c4ac2f8b79fd38ff6bfc72530a47920}
+      \strng{authorfullhash}{4c4ac2f8b79fd38ff6bfc72530a47920}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{labeldatesource}{nodate}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{addendum}{(accessed: 11.12.2022)}
+      \field{title}{An Introduction to Gradient Descent and Backpropagation}
+      \verb{urlraw}
+      \verb https://towardsdatascience.com/an-introduction-to-gradient-descent-and-backpropagation-81648bdb19b2
+      \endverb
+      \verb{url}
+      \verb https://towardsdatascience.com/an-introduction-to-gradient-descent-and-backpropagation-81648bdb19b2
+      \endverb
+    \endentry
+    \entry{ODSC}{online}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=af68b753ba94d60e3bc475b6b38f856d}{%
+           family={Science},
+           familyi={S\bibinitperiod},
+           given={ODSC\bibnamedelimb -\bibnamedelimb Open\bibnamedelima Data},
+           giveni={O\bibinitperiod\bibinitdelim \bibinithyphendelim \bibinitperiod\bibinitdelim O\bibinitperiod\bibinitdelim D\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{af68b753ba94d60e3bc475b6b38f856d}
+      \strng{fullhash}{af68b753ba94d60e3bc475b6b38f856d}
+      \strng{bibnamehash}{af68b753ba94d60e3bc475b6b38f856d}
+      \strng{authorbibnamehash}{af68b753ba94d60e3bc475b6b38f856d}
+      \strng{authornamehash}{af68b753ba94d60e3bc475b6b38f856d}
+      \strng{authorfullhash}{af68b753ba94d60e3bc475b6b38f856d}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labeldatesource}{nodate}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{addendum}{(accessed: 11.12.2022)}
+      \field{title}{XGBoost: Enhancement Over Gradient Boosting Machines}
+      \verb{urlraw}
+      \verb https://odsc.medium.com/xgboost-enhancement-over-gradient-boosting-machines-73abafa49b14#:~:text=XGBoost%20provides%20a%20parallel%20tree,problems%20beyond%20billions%20of%20examples.
+      \endverb
+      \verb{url}
+      \verb https://odsc.medium.com/xgboost-enhancement-over-gradient-boosting-machines-73abafa49b14#:~:text=XGBoost%20provides%20a%20parallel%20tree,problems%20beyond%20billions%20of%20examples.
+      \endverb
+    \endentry
+    \entry{Sagar}{online}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=1a9ba99937a36acb679ef24b0648eeec}{%
+           family={Sharma},
+           familyi={S\bibinitperiod},
+           given={Sagar},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{1a9ba99937a36acb679ef24b0648eeec}
+      \strng{fullhash}{1a9ba99937a36acb679ef24b0648eeec}
+      \strng{bibnamehash}{1a9ba99937a36acb679ef24b0648eeec}
+      \strng{authorbibnamehash}{1a9ba99937a36acb679ef24b0648eeec}
+      \strng{authornamehash}{1a9ba99937a36acb679ef24b0648eeec}
+      \strng{authorfullhash}{1a9ba99937a36acb679ef24b0648eeec}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labeldatesource}{nodate}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{addendum}{(accessed: 11.12.2022)}
+      \field{title}{What the Hell is Perceptron?}
+      \verb{urlraw}
+      \verb https://towardsdatascience.com/what-the-hell-is-perceptron-626217814f53
+      \endverb
+      \verb{url}
+      \verb https://towardsdatascience.com/what-the-hell-is-perceptron-626217814f53
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
